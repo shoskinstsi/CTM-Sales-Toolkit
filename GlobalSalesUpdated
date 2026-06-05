@@ -1,0 +1,1958 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CTM Global Sales Toolkit Hub - Corporate Mockup</title>
+<style>
+  :root{
+    --ctm-navy:#003b49;
+    --ctm-teal:#007c94;
+    --ctm-green:#76bc43;
+    --ink:#102033;
+    --muted:#667085;
+    --bg:#eef3f8;
+    --card:#ffffff;
+    --line:#d8e1ea;
+    --soft:#f8fbfd;
+    --shadow:0 18px 45px rgba(16,32,51,.10);
+    --shadow-sm:0 8px 22px rgba(16,32,51,.08);
+    --radius:24px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Aptos","Segoe UI",Arial,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at top left,rgba(0,124,148,.20),transparent 30%),
+      radial-gradient(circle at top right,rgba(118,188,67,.14),transparent 25%),
+      linear-gradient(180deg,#f7fafc 0%,#eef3f8 42%,#f8fafc 100%);
+    min-height:100vh;
+  }
+  a{color:inherit}
+  .shared-banner{
+    background:linear-gradient(90deg,#002f3a,#005568,#007c94);
+    color:#fff;
+    padding:10px 7vw;
+    position:relative;
+    font-size:13px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    box-shadow:0 2px 12px rgba(0,0,0,.12);
+  }
+  .shared-banner strong{font-size:15px;margin-right:8px;letter-spacing:.02em}
+  .shared-banner a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.6)}
+  .edit-pill{
+    background:rgba(255,255,255,.16);
+    color:#fff!important;
+    border:1px solid rgba(255,255,255,.32)!important;
+    border-radius:999px;
+    padding:8px 14px;
+    font-weight:700;
+    text-decoration:none!important;
+    backdrop-filter:blur(12px);
+    white-space:nowrap;
+  }
+
+  .site-header{
+    background:rgba(255,255,255,.92);
+    border-bottom:1px solid rgba(216,225,234,.88);
+    padding:18px 7vw 16px;
+    display:grid;
+    grid-template-columns:minmax(280px,340px) 1fr;
+    gap:24px;
+    align-items:start;
+    position:sticky;
+    top:0;
+    z-index:20;
+    backdrop-filter:blur(18px);
+    box-shadow:0 10px 28px rgba(16,32,51,.06);
+  }
+  .brand{display:flex;gap:16px;align-items:center;min-width:0;padding-top:4px}
+  .ctm-box{
+    width:56px;height:56px;border-radius:18px;
+    background:linear-gradient(135deg,var(--ctm-navy),var(--ctm-teal));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:22px;font-weight:900;letter-spacing:-1px;
+    box-shadow:0 12px 25px rgba(0,59,73,.25);
+  }
+  .site-name{font-size:22px;font-weight:850;margin-bottom:3px;color:#082536;letter-spacing:-.02em}
+  .site-sub{color:var(--muted);line-height:1.35;font-size:13px}
+  .pills{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:9px;
+    padding:0;
+    overflow:visible;
+  }
+  .pill{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:#fff;color:#344054;
+    padding:10px 12px;border-radius:14px;text-decoration:none;font-size:13px;font-weight:750;
+    border:1px solid var(--line);cursor:pointer;white-space:normal;text-align:center;min-height:44px;
+    box-shadow:0 2px 8px rgba(16,32,51,.04);
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .pill:hover{transform:translateY(-1px);border-color:#a8bdcc;box-shadow:var(--shadow-sm);background:#f8fbfd}
+  .pill.active{background:linear-gradient(135deg,var(--ctm-navy),var(--ctm-teal));color:#fff;border-color:transparent;box-shadow:0 10px 22px rgba(0,124,148,.22)}
+
+
+  .search-shell{
+    grid-column:1 / -1;
+    display:grid;
+    grid-template-columns:minmax(220px,1fr) auto;
+    gap:10px;
+    align-items:center;
+    background:#f8fbfd;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:10px 12px;
+    box-shadow:0 2px 10px rgba(16,32,51,.04);
+  }
+  .search-box{
+    width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+    font:600 15px "Segoe UI",Arial,sans-serif;padding:10px 8px;
+  }
+  .search-box::placeholder{color:#7b8794;font-weight:600}
+  .search-clear{
+    border:1px solid var(--line);background:#fff;color:#344054;border-radius:999px;
+    padding:9px 14px;font-weight:800;cursor:pointer;
+  }
+  .search-clear:hover{background:#eef8fb;border-color:#b9dce4}
+  .search-results{
+    grid-column:1 / -1;display:none;background:#fff;border:1px solid var(--line);border-radius:18px;
+    padding:14px;box-shadow:var(--shadow-sm);max-height:360px;overflow:auto;
+  }
+  .search-results.active{display:block}
+  .search-results-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:900;margin:0 0 10px}
+  .search-result-item{
+    display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:14px;
+    padding:12px 14px;margin:8px 0;background:#fbfdff;
+  }
+  .search-result-item:hover{border-color:#a8bdcc;background:#f3f8fb}
+  .search-result-item strong{display:block;color:#082536;margin-bottom:4px}
+  .search-result-item span{display:block;color:var(--muted);font-size:13px;line-height:1.4}
+  .search-empty{color:var(--muted);padding:8px 4px;font-weight:700}
+  mark.search-hit{background:#fff4c2;color:#0b1f35;border-radius:4px;padding:0 2px}
+
+  main{max-width:1560px;margin:0 auto;padding:34px 7vw 72px}
+  .hero{
+    background:
+      linear-gradient(135deg,rgba(0,59,73,.96),rgba(0,86,104,.92) 48%,rgba(0,124,148,.92)),
+      radial-gradient(circle at 78% 20%,rgba(118,188,67,.42),transparent 26%);
+    color:#fff;border-radius:32px;padding:54px 50px;margin-bottom:30px;min-height:292px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden;
+    border:1px solid rgba(255,255,255,.18);
+  }
+  .hero:before{
+    content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.10);border-radius:26px;pointer-events:none;
+  }
+  .hero:after{
+    content:"";position:absolute;right:-90px;top:-120px;width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,255,255,.20),rgba(255,255,255,.04) 42%,transparent 68%);
+  }
+  .eyebrow{letter-spacing:.42em;font-size:12px;opacity:.9;text-transform:uppercase;margin-bottom:20px;font-weight:850;position:relative;z-index:1}
+  h1{font-size:clamp(34px,4vw,56px);line-height:1.02;margin:0 0 20px;letter-spacing:-.045em;position:relative;z-index:1}
+  .hero p{max-width:960px;font-size:18px;line-height:1.65;margin:0 0 28px;color:rgba(255,255,255,.90);position:relative;z-index:1}
+  .owner{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:12px 18px;font-size:14px;font-weight:750;position:relative;z-index:1;backdrop-filter:blur(10px)}
+  .owner:before{content:"●";color:var(--ctm-green);font-size:12px}
+
+  .step-grid,.tile-grid,.quick-row,.three-grid,.bid-section-grid{display:grid;gap:18px}
+  .step-grid{grid-template-columns:repeat(5,1fr);margin:0 0 30px}
+  .tile-grid{grid-template-columns:repeat(4,1fr)}
+  .quick-row{grid-template-columns:repeat(4,1fr)}
+  .three-grid{grid-template-columns:repeat(3,1fr)}
+  .bid-section-grid{grid-template-columns:repeat(5,1fr)}
+
+  .step-card,.tile,.quick-link,.region-tile,.content-card,.bid-card,.metric-card,.stage-card,.question-card,.wl-debrief-wrap,.wl-question-card,.wl-step{
+    background:rgba(255,255,255,.94);
+    border:1px solid rgba(216,225,234,.95);
+    border-radius:var(--radius);
+    box-shadow:0 8px 25px rgba(16,32,51,.06);
+  }
+  .step-card,.tile,.quick-link,.region-tile,.bid-card{text-decoration:none;color:var(--ink);display:block;cursor:pointer;position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease}
+  .step-card:after,.tile:after,.region-tile:after,.bid-card:after{
+    content:"";position:absolute;inset:auto -30% -45% auto;width:145px;height:145px;border-radius:50%;background:rgba(0,124,148,.08);transition:.18s ease;
+  }
+  .step-card{min-height:138px;padding:28px 26px}
+  .step-card:hover,.tile:hover,.region-tile:hover,.quick-link:hover,.bid-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#b6cad8;background:#fff}
+  .step-card:hover:after,.tile:hover:after,.region-tile:hover:after,.bid-card:hover:after{transform:scale(1.12);background:rgba(118,188,67,.14)}
+  .step-card .num{color:var(--ctm-teal);font-size:26px;font-weight:900;letter-spacing:.08em;margin-bottom:18px}
+  .step-card h3{margin:0;font-size:18px;line-height:1.35;color:#092b3a;position:relative;z-index:1}
+
+  .content-card{padding:28px 32px;margin-bottom:28px;backdrop-filter:blur(10px)}
+  .content-card h2{margin:0 0 14px;color:#082536;font-size:25px;letter-spacing:-.025em}
+  .content-card p,.content-card li{color:#344054;line-height:1.68}
+  .content-card ul{margin:0;padding-left:20px}
+  .content-card b{color:#082536}
+
+  .tile-section{margin-top:34px}
+  .section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:18px}
+  .section-head h2{margin:0;font-size:30px;color:#082536;letter-spacing:-.035em}
+  .section-head p{margin:0;color:var(--muted)}
+
+  .tile{padding:24px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between}
+  .tile-top{display:flex;gap:16px;align-items:flex-start;position:relative;z-index:1}
+  .circle{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,#e9f8fb,#eef8e9);color:var(--ctm-teal);display:flex;align-items:center;justify-content:center;font-weight:900;flex:0 0 auto;border:1px solid #d6e9ee}
+  .tile h3{margin:0 0 8px;font-size:19px;color:#082536;letter-spacing:-.015em}
+  .tile p{margin:0;color:var(--muted);line-height:1.48;font-size:14px}
+  .arrow{align-self:flex-end;color:var(--ctm-teal);font-weight:900;font-size:26px;margin-top:16px;position:relative;z-index:1}
+
+  .region-tile{padding:30px;min-height:185px;position:relative;overflow:hidden}
+  .region-tile:before{content:"";position:absolute;right:24px;top:24px;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,var(--ctm-teal),var(--ctm-green));opacity:.18}
+  .region-tile h3{margin:0 0 10px;font-size:26px;color:#082536;letter-spacing:-.035em;position:relative;z-index:1}
+  .region-tile p{margin:0;color:var(--muted);line-height:1.55;position:relative;z-index:1}
+
+  .bid-card{padding:26px;min-height:205px;border-top:0}
+  .bid-card:before{content:"";position:absolute;left:0;right:0;top:0;height:7px;background:linear-gradient(90deg,var(--ctm-teal),var(--ctm-green))}
+  .bid-card:nth-child(2):before{background:linear-gradient(90deg,var(--ctm-green),#a7d878)}
+  .bid-card h3{margin:14px 0 10px;font-size:21px;color:#082536;letter-spacing:-.02em;position:relative;z-index:1}
+  .bid-card p{margin:0;color:#344054;line-height:1.55;font-size:15px;position:relative;z-index:1}
+  .bid-num{color:var(--ctm-teal);font-size:28px;font-weight:900;letter-spacing:.08em;position:relative;z-index:1}
+
+  .quick-link{padding:18px 20px;font-weight:800;border-radius:18px;background:#fff;color:#12354a;display:flex;justify-content:space-between;align-items:center;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease}
+  .quick-link:hover{background:linear-gradient(135deg,#fff,#eef8fb);border-color:#9fc8d4}
+
+  .backtop{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--ctm-teal);font-weight:850;text-decoration:none;cursor:pointer;border:1px solid #c9e4ea;background:#eef8fb;border-radius:999px;padding:10px 14px}
+  .backtop:hover{background:#e7f4f7}
+  footer{color:var(--muted);padding:24px 7vw 40px;text-align:center}
+
+  .dashboard-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:22px}
+  .metric-card{padding:24px;background:linear-gradient(180deg,#fff,#fbfdfe)}
+  .metric-label{color:var(--muted);font-size:12px;margin-bottom:10px;font-weight:900;text-transform:uppercase;letter-spacing:.10em}
+  .metric-value{font-size:40px;font-weight:950;color:#082536;margin-bottom:6px;letter-spacing:-.04em}
+  .metric-note{color:#344054;line-height:1.45;font-size:14px}
+  .pipeline-board{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:22px 0}
+  .stage-card{padding:18px;border-top:0;position:relative;overflow:hidden}
+  .stage-card:before{content:"";display:block;width:48px;height:5px;border-radius:999px;background:var(--ctm-teal);margin-bottom:14px}
+  .stage-card:nth-child(2):before{background:#4aa7b6}.stage-card:nth-child(3):before{background:var(--ctm-green)}.stage-card:nth-child(4):before{background:#f0b429}.stage-card:nth-child(5):before{background:#ec7a32}.stage-card:nth-child(6):before{background:#667085}
+  .stage-card h3{margin:0 0 8px;font-size:16px;color:#082536}.stage-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+  .dashboard-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-sm)}
+  .dashboard-table th,.dashboard-table td{text-align:left;padding:15px 16px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}
+  .dashboard-table th{background:#f5f9fc;color:#344054;font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:900}
+  .dashboard-table tr:last-child td{border-bottom:none}
+  .dashboard-table tbody tr:hover{background:#fbfdff}
+  .stage-pill{display:inline-block;border-radius:999px;padding:6px 10px;font-weight:850;font-size:12px;background:#eaf7e7;color:#2f6f22;white-space:nowrap}
+  .risk-pill{display:inline-block;border-radius:999px;padding:6px 10px;font-weight:850;font-size:12px;background:#fff4e5;color:#a15c00;white-space:nowrap}
+  .owner-tag{font-weight:850;color:#082536}
+  .questionnaire{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+  .question-card{padding:23px;border-left:0;position:relative;overflow:hidden}
+  .question-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--ctm-teal)}
+  .question-card:nth-child(2):before{background:var(--ctm-green)}
+  .question-card:nth-child(3):before{background:#f0b429}
+  .question-label{color:var(--ctm-teal);font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+  .question-card h3{margin:0 0 10px;font-size:20px;color:#082536}
+  .question-card p{margin:0;color:#344054;line-height:1.55;font-size:14px}
+  .debrief-field-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+  .debrief-field{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:14px 16px;color:#344054}
+  .debrief-field b{color:#082536}
+
+  .wl-debrief-wrap{padding:28px 30px;background:linear-gradient(180deg,#fff,#fbfdfe)}
+  .wl-debrief-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:18px}
+  .wl-debrief-head h2{margin:0 0 12px;color:#082536;font-size:30px;letter-spacing:-.035em}
+  .wl-debrief-head p{margin:0;max-width:760px;color:#465670;line-height:1.55;font-size:15px}
+  .wl-required-pill{background:#eaf7e7;color:#2f6f22;border:1px solid #c9e5c2;border-radius:999px;padding:9px 14px;font-weight:900;font-size:14px;white-space:nowrap}
+  .wl-question-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:6px}
+  .wl-question-card{background:#fbfff8;border:1px solid #d6eac5;border-left:0;border-radius:18px;padding:16px 18px;min-height:124px}
+  .wl-question-card h3{margin:0 0 8px;color:#082536;font-size:16px;line-height:1.35}
+  .wl-question-card p{margin:0;color:#465670;line-height:1.5;font-size:15px}
+  .wl-step-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+  .wl-step{background:#eef8fb;border:1px solid #c9e4ea;border-radius:16px;color:#003b49;font-weight:850;line-height:1.35;padding:14px;min-height:64px;font-size:15px}
+
+
+  .executive-hero{
+    display:grid;
+    grid-template-columns:minmax(0,1.3fr) minmax(320px,.7fr);
+    gap:24px;
+    align-items:stretch;
+    background:
+      linear-gradient(135deg,rgba(0,47,58,.98),rgba(0,74,91,.96) 50%,rgba(0,124,148,.92)),
+      radial-gradient(circle at 84% 18%,rgba(118,188,67,.34),transparent 28%);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:34px;
+    padding:46px;
+    margin-bottom:24px;
+    color:#fff;
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+  }
+  .executive-hero:after{content:"";position:absolute;right:-110px;top:-140px;width:420px;height:420px;border-radius:50%;border:1px solid rgba(255,255,255,.2);box-shadow:0 0 0 46px rgba(255,255,255,.035),0 0 0 92px rgba(255,255,255,.02)}
+  .executive-hero h1{font-size:clamp(40px,4.6vw,64px);line-height:1;margin:0 0 18px;letter-spacing:-.055em;position:relative;z-index:1}
+  .executive-hero p{font-size:18px;line-height:1.65;color:rgba(255,255,255,.9);max-width:900px;margin:0 0 24px;position:relative;z-index:1}
+  .exec-actions{display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:1}
+  .exec-button{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 16px;text-decoration:none;font-weight:900;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.14);color:#fff;backdrop-filter:blur(12px)}
+  .exec-button.primary{background:#fff;color:#003b49;border-color:#fff}
+  .exec-side-panel{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:26px;padding:24px;backdrop-filter:blur(14px);position:relative;z-index:1}
+  .exec-side-panel h3{margin:0 0 14px;font-size:18px;letter-spacing:-.01em}
+  .exec-check{display:flex;gap:10px;align-items:flex-start;border-top:1px solid rgba(255,255,255,.14);padding:13px 0;color:rgba(255,255,255,.9);line-height:1.45}
+  .exec-check:first-of-type{border-top:none;padding-top:0}
+  .exec-check b{color:#fff}
+
+  .exec-kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:0 0 24px}
+  .exec-kpi{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+  .exec-kpi:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--ctm-teal),var(--ctm-green))}
+  .exec-kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:950;margin-bottom:9px}
+  .exec-kpi-value{font-size:34px;line-height:1;font-weight:950;color:#082536;letter-spacing:-.05em;margin-bottom:6px}
+  .exec-kpi-note{font-size:13px;color:#475467;line-height:1.4}
+
+  .exec-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px}
+  .exec-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:24px}
+  .exec-panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 8px 25px rgba(16,32,51,.06)}
+  .exec-panel h2{margin:0 0 12px;color:#082536;font-size:25px;letter-spacing:-.035em}
+  .exec-panel p,.exec-panel li{color:#344054;line-height:1.62}
+  .exec-panel ul{margin:10px 0 0;padding-left:20px}
+  .exec-panel.accent{background:linear-gradient(180deg,#fff,#f7fcfd)}
+  .decision-list{display:grid;gap:12px;margin-top:14px}
+  .decision-item{display:grid;grid-template-columns:130px 1fr auto;gap:14px;align-items:center;background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:14px}
+  .decision-pill{display:inline-flex;justify-content:center;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900;white-space:nowrap;background:#fff4e5;color:#a15c00}
+  .decision-pill.green{background:#eaf7e7;color:#2f6f22}.decision-pill.blue{background:#eef8fb;color:#00667a}
+  .exec-impact-strip{display:grid;grid-template-columns:1.05fr repeat(4,1fr);gap:14px;background:#082536;color:#fff;border-radius:26px;padding:22px;margin-bottom:24px;box-shadow:var(--shadow);align-items:stretch}
+  .impact-intro{padding:6px 10px}.impact-intro h2{margin:0 0 8px;font-size:25px;letter-spacing:-.035em}.impact-intro p{margin:0;color:rgba(255,255,255,.82);line-height:1.5}
+  .impact-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:18px}.impact-card b{display:block;margin-bottom:8px}.impact-card span{color:rgba(255,255,255,.82);font-size:14px;line-height:1.45}
+  .exec-table-wrap{overflow-x:auto;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+  .exec-note{border-left:5px solid var(--ctm-green);background:#fbfff8;border-radius:18px;padding:18px 20px;color:#344054;line-height:1.62;margin-top:16px}
+
+
+  .breakout-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:18px 0 6px}
+  .breakout-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:0 4px 16px rgba(16,32,51,.06);border-left:5px solid var(--ctm-teal)}
+  .breakout-card:nth-child(2){border-left-color:var(--ctm-green)}
+  .breakout-card:nth-child(3){border-left-color:#f0b429}
+  .breakout-card h3{margin:0 0 10px;color:#0b1f35;font-size:18px;letter-spacing:-.02em}
+  .breakout-card p{margin:0 0 10px;color:#344054;line-height:1.55}
+  .breakout-card ul{margin:8px 0 0;padding-left:18px}
+  .breakout-card li{margin-bottom:8px;color:#344054;line-height:1.5}
+  .section-intro{background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:14px 0 18px;color:#344054;line-height:1.6}
+
+  @media(max-width:1300px){.bid-section-grid,.pipeline-board,.exec-kpi-grid{grid-template-columns:repeat(2,1fr)}.breakout-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:1200px){.step-grid,.tile-grid,.quick-row,.dashboard-summary,.exec-grid-2,.exec-grid-3,.exec-impact-strip{grid-template-columns:repeat(2,1fr)}.site-header{grid-template-columns:1fr;align-items:start}.pills{padding-bottom:10px}}
+  @media(max-width:820px){
+    .shared-banner{padding:10px 18px;display:block}.edit-pill{display:inline-block;margin-top:8px}
+    main{padding:24px 18px 60px}.site-header{padding:16px 18px}.brand{align-items:flex-start}.ctm-box{width:50px;height:50px;border-radius:16px}
+    .step-grid,.tile-grid,.three-grid,.quick-row,.bid-section-grid,.dashboard-summary,.pipeline-board,.questionnaire,.debrief-field-list,.wl-question-grid,.wl-step-row,.exec-kpi-grid,.exec-grid-2,.exec-grid-3,.exec-impact-strip,.executive-hero{grid-template-columns:1fr}
+    .hero,.executive-hero{padding:36px 26px;min-height:250px;border-radius:26px}h1{font-size:34px}.hero p{font-size:16px}.dashboard-table{display:block;overflow-x:auto;white-space:nowrap}.wl-debrief-head{display:block}.wl-required-pill{display:inline-block;margin-top:14px}
+  }
+
+  /* CSS-only section navigation for downloaded/shared HTML */
+  .view{display:none}
+  .view.active{display:block}
+  main:has(.view:target) .view{display:none}
+  main:has(.view:target) .view:target{display:block}
+
+
+
+  /* Corporate user-friendly refresh */
+  :root{
+    --ctm-navy:#003b49;
+    --ctm-teal:#007c94;
+    --ctm-green:#76bc43;
+    --ink:#172033;
+    --muted:#5b677a;
+    --bg:#f4f7fb;
+    --line:#dfe7ef;
+    --soft:#f7fafd;
+    --shadow:0 12px 28px rgba(16,32,51,.08);
+    --shadow-sm:0 6px 16px rgba(16,32,51,.06);
+    --radius:18px;
+  }
+  body{
+    background:#f4f7fb;
+    font-family:"Aptos","Segoe UI",Arial,sans-serif;
+  }
+  .shared-banner{
+    background:#003b49;
+    padding:10px 7vw;
+    min-height:44px;
+    box-shadow:none;
+  }
+  .shared-banner div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .shared-banner strong{font-size:14px;letter-spacing:.01em}
+  .shared-banner span{font-size:13px;opacity:.88}
+  .edit-pill{background:#ffffff;color:#003b49!important;border:0!important;padding:7px 13px;font-size:12px;box-shadow:none}
+  .site-header{
+    grid-template-columns:320px minmax(0,1fr);
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    box-shadow:0 4px 18px rgba(16,32,51,.05);
+    padding:18px 7vw;
+    gap:22px;
+  }
+  .ctm-box{border-radius:10px;width:48px;height:48px;box-shadow:none;background:#003b49;font-size:19px}
+  .site-name{font-size:20px;font-weight:800;color:#0b1f35}
+  .site-sub{font-size:12px;color:#667085}
+  .pills{grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px;align-items:stretch}
+  .pill{
+    min-height:40px;border-radius:10px;padding:9px 10px;
+    background:#f8fafc;border:1px solid #e3e9f0;color:#344054;
+    font-size:12.5px;font-weight:700;box-shadow:none;
+  }
+  .pill:hover{transform:none;background:#eef6f8;border-color:#bfd5db;box-shadow:none;color:#003b49}
+  .pill.active{background:#007c94;color:#fff;box-shadow:none;border-color:#007c94}
+  .search-shell{
+    border-radius:12px;background:#fff;border:1px solid var(--line);box-shadow:none;padding:8px 10px;
+  }
+  .search-box{font-family:"Aptos","Segoe UI",Arial,sans-serif;font-size:14px;font-weight:500;padding:9px 10px}
+  .search-clear{border-radius:9px;background:#f1f5f9;border:1px solid #e2e8f0;color:#344054}
+  main{max-width:1500px;padding-top:28px}
+  .executive-hero,.hero{
+    border-radius:20px;
+    background:linear-gradient(135deg,#003b49 0%,#00586a 60%,#007c94 100%);
+    box-shadow:var(--shadow);
+  }
+  .executive-hero{grid-template-columns:minmax(0,1.4fr) minmax(300px,.6fr);gap:28px;padding:42px}
+  h1{font-size:40px;letter-spacing:-.03em}
+  .executive-hero p,.hero p{font-size:17px;line-height:1.6}
+  .exec-actions{gap:10px;flex-wrap:wrap}
+  .exec-button{border-radius:10px;padding:12px 16px;font-size:14px;box-shadow:none}
+  .exec-side-panel{border-radius:16px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.22);box-shadow:none}
+  .exec-check{border-top:1px solid rgba(255,255,255,.16);padding-top:14px;margin-top:14px}
+  .exec-check span{color:#a8d86f}
+  .corporate-guide{
+    background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;margin:22px 0 22px;
+    box-shadow:var(--shadow-sm);
+  }
+  .guide-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px;flex-wrap:wrap}
+  .guide-heading h2{margin:3px 0 0;font-size:24px;color:#0b1f35;letter-spacing:-.02em}
+  .guide-heading p{margin:0;color:var(--muted);max-width:470px;line-height:1.5}
+  .section-label{display:inline-block;text-transform:uppercase;letter-spacing:.12em;color:#007c94;font-size:12px;font-weight:800}
+  .guide-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .guide-card{
+    display:block;text-decoration:none;color:inherit;background:#f8fafc;border:1px solid #e3e9f0;border-radius:16px;padding:20px;min-height:170px;
+    transition:background .16s ease,border-color .16s ease,transform .16s ease;
+  }
+  .guide-card:hover{background:#eef8fb;border-color:#b9dce4;transform:translateY(-2px)}
+  .guide-card span{display:inline-block;color:#007c94;background:#eaf6f8;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800;margin-bottom:18px}
+  .guide-card h3{margin:0 0 9px;font-size:18px;color:#0b1f35;line-height:1.25}
+  .guide-card p{margin:0;color:#5b677a;line-height:1.5;font-size:14px}
+  .exec-kpi-grid,.dashboard-summary{gap:14px}
+  .exec-kpi,.metric-card,.content-card,.tile,.quick-link,.region-tile,.bid-card,.stage-card,.wl-debrief-wrap{
+    border-radius:16px;box-shadow:var(--shadow-sm);border-color:#e2e8f0;
+  }
+  .exec-kpi{padding:20px;background:#fff}
+  .exec-kpi-value{font-size:30px;color:#0b1f35}
+  .exec-impact-strip{border-radius:18px;box-shadow:var(--shadow-sm);background:#fff;border:1px solid var(--line)}
+  .impact-intro{background:#f8fafc;border-radius:14px;border:1px solid #e3e9f0}
+  .impact-card{background:#fff;border-left:4px solid #007c94}
+  .section-head h2,.content-card h2{letter-spacing:-.02em;color:#0b1f35}
+  .quick-row{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .quick-link{background:#fff;border:1px solid #e2e8f0;padding:15px 16px}
+  .quick-link:hover{background:#eef8fb;border-color:#b9dce4;transform:none}
+  .tile-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .tile{min-height:148px;padding:22px;background:#fff}
+  .tile:hover,.region-tile:hover,.bid-card:hover,.step-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .circle{background:#eef8fb;color:#007c94}
+  .arrow{color:#007c94}
+  .bid-card{border-top:4px solid #007c94;background:#fff}
+  .bid-num{font-size:22px;color:#007c94}
+  .dashboard-table{border-radius:14px;box-shadow:var(--shadow-sm)}
+  .dashboard-table th{background:#f8fafc;color:#475467}
+  footer{font-size:13px}
+  @media(max-width:1200px){.site-header{grid-template-columns:1fr}.guide-grid{grid-template-columns:repeat(2,1fr)}.executive-hero{grid-template-columns:1fr}}
+  @media(max-width:720px){.guide-grid{grid-template-columns:1fr}.breakout-grid{grid-template-columns:1fr}.shared-banner{align-items:flex-start}.site-header{position:relative}.pills{grid-template-columns:repeat(2,1fr)}h1{font-size:32px}.executive-hero{padding:30px 24px}}
+
+</style>
+
+<noscript>
+  <style>
+    .view{display:block!important}
+  
+
+  /* Corporate user-friendly refresh */
+  :root{
+    --ctm-navy:#003b49;
+    --ctm-teal:#007c94;
+    --ctm-green:#76bc43;
+    --ink:#172033;
+    --muted:#5b677a;
+    --bg:#f4f7fb;
+    --line:#dfe7ef;
+    --soft:#f7fafd;
+    --shadow:0 12px 28px rgba(16,32,51,.08);
+    --shadow-sm:0 6px 16px rgba(16,32,51,.06);
+    --radius:18px;
+  }
+  body{
+    background:#f4f7fb;
+    font-family:"Aptos","Segoe UI",Arial,sans-serif;
+  }
+  .shared-banner{
+    background:#003b49;
+    padding:10px 7vw;
+    min-height:44px;
+    box-shadow:none;
+  }
+  .shared-banner div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .shared-banner strong{font-size:14px;letter-spacing:.01em}
+  .shared-banner span{font-size:13px;opacity:.88}
+  .edit-pill{background:#ffffff;color:#003b49!important;border:0!important;padding:7px 13px;font-size:12px;box-shadow:none}
+  .site-header{
+    grid-template-columns:320px minmax(0,1fr);
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    box-shadow:0 4px 18px rgba(16,32,51,.05);
+    padding:18px 7vw;
+    gap:22px;
+  }
+  .ctm-box{border-radius:10px;width:48px;height:48px;box-shadow:none;background:#003b49;font-size:19px}
+  .site-name{font-size:20px;font-weight:800;color:#0b1f35}
+  .site-sub{font-size:12px;color:#667085}
+  .pills{grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px;align-items:stretch}
+  .pill{
+    min-height:40px;border-radius:10px;padding:9px 10px;
+    background:#f8fafc;border:1px solid #e3e9f0;color:#344054;
+    font-size:12.5px;font-weight:700;box-shadow:none;
+  }
+  .pill:hover{transform:none;background:#eef6f8;border-color:#bfd5db;box-shadow:none;color:#003b49}
+  .pill.active{background:#007c94;color:#fff;box-shadow:none;border-color:#007c94}
+  .search-shell{
+    border-radius:12px;background:#fff;border:1px solid var(--line);box-shadow:none;padding:8px 10px;
+  }
+  .search-box{font-family:"Aptos","Segoe UI",Arial,sans-serif;font-size:14px;font-weight:500;padding:9px 10px}
+  .search-clear{border-radius:9px;background:#f1f5f9;border:1px solid #e2e8f0;color:#344054}
+  main{max-width:1500px;padding-top:28px}
+  .executive-hero,.hero{
+    border-radius:20px;
+    background:linear-gradient(135deg,#003b49 0%,#00586a 60%,#007c94 100%);
+    box-shadow:var(--shadow);
+  }
+  .executive-hero{grid-template-columns:minmax(0,1.4fr) minmax(300px,.6fr);gap:28px;padding:42px}
+  h1{font-size:40px;letter-spacing:-.03em}
+  .executive-hero p,.hero p{font-size:17px;line-height:1.6}
+  .exec-actions{gap:10px;flex-wrap:wrap}
+  .exec-button{border-radius:10px;padding:12px 16px;font-size:14px;box-shadow:none}
+  .exec-side-panel{border-radius:16px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.22);box-shadow:none}
+  .exec-check{border-top:1px solid rgba(255,255,255,.16);padding-top:14px;margin-top:14px}
+  .exec-check span{color:#a8d86f}
+  .corporate-guide{
+    background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;margin:22px 0 22px;
+    box-shadow:var(--shadow-sm);
+  }
+  .guide-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px;flex-wrap:wrap}
+  .guide-heading h2{margin:3px 0 0;font-size:24px;color:#0b1f35;letter-spacing:-.02em}
+  .guide-heading p{margin:0;color:var(--muted);max-width:470px;line-height:1.5}
+  .section-label{display:inline-block;text-transform:uppercase;letter-spacing:.12em;color:#007c94;font-size:12px;font-weight:800}
+  .guide-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .guide-card{
+    display:block;text-decoration:none;color:inherit;background:#f8fafc;border:1px solid #e3e9f0;border-radius:16px;padding:20px;min-height:170px;
+    transition:background .16s ease,border-color .16s ease,transform .16s ease;
+  }
+  .guide-card:hover{background:#eef8fb;border-color:#b9dce4;transform:translateY(-2px)}
+  .guide-card span{display:inline-block;color:#007c94;background:#eaf6f8;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800;margin-bottom:18px}
+  .guide-card h3{margin:0 0 9px;font-size:18px;color:#0b1f35;line-height:1.25}
+  .guide-card p{margin:0;color:#5b677a;line-height:1.5;font-size:14px}
+  .exec-kpi-grid,.dashboard-summary{gap:14px}
+  .exec-kpi,.metric-card,.content-card,.tile,.quick-link,.region-tile,.bid-card,.stage-card,.wl-debrief-wrap{
+    border-radius:16px;box-shadow:var(--shadow-sm);border-color:#e2e8f0;
+  }
+  .exec-kpi{padding:20px;background:#fff}
+  .exec-kpi-value{font-size:30px;color:#0b1f35}
+  .exec-impact-strip{border-radius:18px;box-shadow:var(--shadow-sm);background:#fff;border:1px solid var(--line)}
+  .impact-intro{background:#f8fafc;border-radius:14px;border:1px solid #e3e9f0}
+  .impact-card{background:#fff;border-left:4px solid #007c94}
+  .section-head h2,.content-card h2{letter-spacing:-.02em;color:#0b1f35}
+  .quick-row{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .quick-link{background:#fff;border:1px solid #e2e8f0;padding:15px 16px}
+  .quick-link:hover{background:#eef8fb;border-color:#b9dce4;transform:none}
+  .tile-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .tile{min-height:148px;padding:22px;background:#fff}
+  .tile:hover,.region-tile:hover,.bid-card:hover,.step-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .circle{background:#eef8fb;color:#007c94}
+  .arrow{color:#007c94}
+  .bid-card{border-top:4px solid #007c94;background:#fff}
+  .bid-num{font-size:22px;color:#007c94}
+  .dashboard-table{border-radius:14px;box-shadow:var(--shadow-sm)}
+  .dashboard-table th{background:#f8fafc;color:#475467}
+  footer{font-size:13px}
+  @media(max-width:1200px){.site-header{grid-template-columns:1fr}.guide-grid{grid-template-columns:repeat(2,1fr)}.executive-hero{grid-template-columns:1fr}}
+  @media(max-width:720px){.guide-grid{grid-template-columns:1fr}.breakout-grid{grid-template-columns:1fr}.shared-banner{align-items:flex-start}.site-header{position:relative}.pills{grid-template-columns:repeat(2,1fr)}h1{font-size:32px}.executive-hero{padding:30px 24px}}
+
+</style>
+</noscript>
+
+</head>
+<body>
+  <div class="shared-banner">
+    <div><strong>CTM Global Sales Toolkit</strong><span>Corporate-ready SharePoint hub for pipeline visibility, bid governance, regional resources, and win/loss insights.</span></div>
+    <a class="edit-pill" href="#">Prototype</a>
+  </div>
+
+  <header class="site-header">
+    <div class="brand">
+      <div class="ctm-box">ctm</div>
+      <div>
+        <div class="site-name">Global Sales Toolkit Hub</div>
+        <div class="site-sub">Corporate SharePoint Mockup<br>Global Sales Enablement</div>
+      </div>
+    </div>
+    <nav class="pills" aria-label="Main navigation">
+      <a href="#view-home" class="pill active" data-target="home">Home</a>
+      <a href="#view-executive-command-center" class="pill" data-target="executive-command-center">Executive View</a>
+      <a href="#view-global-sales" class="pill" data-target="global-sales">Global Sales</a>
+      <a href="#view-regions" class="pill" data-target="regions">Regions</a>
+      <a href="#view-bid-toolkit" class="pill" data-target="bid-toolkit">Bid Toolkit</a>
+      <a href="#view-templates" class="pill" data-target="templates">Templates</a>
+      <a href="#view-win-loss" class="pill" data-target="win-loss">Win / Loss</a>
+      <a href="#view-customer-proof-hub" class="pill" data-target="customer-proof-hub">Customer Proof</a>
+      <a href="#view-sales-agent-dashboard" class="pill" data-target="sales-agent-dashboard">Dashboard</a>
+      <a href="#view-sales-stages" class="pill" data-target="sales-stages">Sales Stages</a>
+      <a href="#view-training" class="pill" data-target="training">Training</a>
+      <a href="#view-contacts" class="pill" data-target="contacts">Help & Contacts</a>
+    </nav>
+    <div class="search-shell" role="search">
+      <input id="siteSearch" class="search-box" type="search" placeholder="Search toolkit sections, dashboards, bid resources, regions, templates, contacts..." aria-label="Search the sales toolkit">
+      <button id="clearSearch" class="search-clear" type="button">Clear</button>
+      <div id="searchResults" class="search-results" aria-live="polite"></div>
+    </div>
+  </header>
+
+  <main>
+    <section id="view-home" class="view active">
+      <section class="executive-hero">
+        <div>
+          <div class="eyebrow">Executive Enablement</div>
+          <h1>Global Sales Toolkit Hub</h1>
+          <p>A centralized leadership-ready hub designed to improve sales consistency, increase pipeline visibility, standardize bid governance, and capture win/loss intelligence across North America, ANZ, Asia, and EMEA.</p>
+          <div class="exec-actions">
+            <a href="#view-executive-command-center" class="exec-button primary" data-target="executive-command-center">Open Executive Command Center →</a>
+            <a href="#view-sales-agent-dashboard" class="exec-button" data-target="sales-agent-dashboard">View Pipeline Dashboard</a>
+            <a href="#view-bid-toolkit" class="exec-button" data-target="bid-toolkit">Review Bid Governance</a>
+          </div>
+        </div>
+        <aside class="exec-side-panel">
+          <h3>What leaders can do here</h3>
+          <div class="exec-check"><span>●</span><div><b>Monitor pipeline health</b><br>See active pursuits, stage movement, and at-risk opportunities.</div></div>
+          <div class="exec-check"><span>●</span><div><b>Manage governance</b><br>Review bid/no-bid, executive briefing, pricing, and PII approval points.</div></div>
+          <div class="exec-check"><span>●</span><div><b>Drive consistency</b><br>Use one global source of truth for regions, templates, training, and win/loss feedback.</div></div>
+        </aside>
+      </section>
+
+      <section class="corporate-guide" aria-label="Choose your path">
+        <div class="guide-heading">
+          <span class="section-label">Choose your path</span>
+          <h2>Start with the task you need to complete</h2>
+          <p>Designed for corporate users who need quick access, clear ownership, and fewer clicks.</p>
+        </div>
+        <div class="guide-grid">
+          <a href="#view-executive-command-center" class="guide-card" data-target="executive-command-center">
+            <span>Executive</span>
+            <h3>Review the leadership snapshot</h3>
+            <p>Pipeline health, decisions needed, governance, regional activity, and risk indicators.</p>
+          </a>
+          <a href="#view-sales-agent-dashboard" class="guide-card" data-target="sales-agent-dashboard">
+            <span>Sales Leader</span>
+            <h3>Check account progress</h3>
+            <p>Review stage status, owner, next step, and accounts needing attention.</p>
+          </a>
+          <a href="#view-bid-toolkit" class="guide-card" data-target="bid-toolkit">
+            <span>Sales Support</span>
+            <h3>Manage a pursuit</h3>
+            <p>Open bid/no-bid, executive briefing, kickoff, pricing intake, and checklist resources.</p>
+          </a>
+          <a href="#view-training" class="guide-card" data-target="training">
+            <span>New Hire</span>
+            <h3>Find onboarding resources</h3>
+            <p>Access training, templates, 30/60/90 plans, role guidance, and support contacts.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="exec-kpi-grid">
+        <div class="exec-kpi"><div class="exec-kpi-label">Active Opportunities</div><div class="exec-kpi-value">42</div><div class="exec-kpi-note">Open opportunities across regions.</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-label">Proposal / Bid</div><div class="exec-kpi-value">11</div><div class="exec-kpi-note">Pursuits in proposal or pricing activity.</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-label">Executive Review</div><div class="exec-kpi-value">4</div><div class="exec-kpi-note">Items needing leader decision or support.</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-label">At Risk</div><div class="exec-kpi-value">5</div><div class="exec-kpi-note">Stalled or missing next-step opportunities.</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-label">Regions</div><div class="exec-kpi-value">4</div><div class="exec-kpi-note">North America, ANZ, Asia, and EMEA.</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-label">Stage 8 Debrief</div><div class="exec-kpi-value">Required</div><div class="exec-kpi-note">Win/loss feedback captured at close.</div></div>
+      </section>
+
+      <section class="exec-impact-strip">
+        <div class="impact-intro"><h2>Why this matters</h2><p>This toolkit turns sales content into an executive operating view for revenue growth, pursuit discipline, and regional consistency.</p></div>
+        <div class="impact-card"><b>Pipeline Visibility</b><span>See stage status, owner, risk, and next step.</span></div>
+        <div class="impact-card"><b>Revenue Growth</b><span>Connect bid tools, proof points, and growth opportunities.</span></div>
+        <div class="impact-card"><b>Risk Management</b><span>Highlight approvals, bid gates, and protected data controls.</span></div>
+        <div class="impact-card"><b>Global Consistency</b><span>Align regions to shared templates, process, and enablement.</span></div>
+      </section>
+
+      <section class="tile-section">
+        <div class="section-head"><div><h2>Strategic Access Points</h2><p>Each link opens only the section selected.</p></div></div>
+        <div class="quick-row">
+          <a href="#view-executive-command-center" class="quick-link" data-target="executive-command-center">Executive Command Center →</a>
+          <a href="#view-sales-agent-dashboard" class="quick-link" data-target="sales-agent-dashboard">Pipeline Dashboard →</a>
+          <a href="#view-bid-toolkit" class="quick-link" data-target="bid-toolkit">Bid Governance →</a>
+          <a href="#view-win-loss" class="quick-link" data-target="win-loss">Win / Loss Insights →</a>
+          <a href="#view-regions" class="quick-link" data-target="regions">Regional Hubs →</a>
+          <a href="#view-customer-proof-hub" class="quick-link" data-target="customer-proof-hub">Customer Proof Hub →</a>
+          <a href="#view-global-tools" class="quick-link" data-target="global-tools">Global Tools →</a>
+          <a href="#view-templates" class="quick-link" data-target="templates">Templates →</a>
+          <a href="#view-training" class="quick-link" data-target="training">Training →</a>
+          <a href="#view-sales-stages" class="quick-link" data-target="sales-stages">Sales Stages →</a>
+          <a href="#view-win-loss-debrief" class="quick-link" data-target="win-loss-debrief">Stage 8 Debrief →</a>
+          <a href="#view-contacts" class="quick-link" data-target="contacts">Ownership & Escalation →</a>
+        </div>
+      </section>
+    </section>
+
+    <section id="view-executive-command-center" class="view">
+      <section class="executive-hero">
+        <div>
+          <div class="eyebrow">Leadership Snapshot</div>
+          <h1>Executive Command Center</h1>
+          <p>A high-level view of sales activity, active pursuits, regional pipeline movement, bid governance, risk, and win/loss insights so leaders can quickly identify where support, approval, or escalation is needed.</p>
+          <div class="exec-actions">
+            <a href="#view-sales-agent-dashboard" class="exec-button primary" data-target="sales-agent-dashboard">Open Account Stage Tracker →</a>
+            <a href="#view-win-loss-debrief" class="exec-button" data-target="win-loss-debrief">Review Stage 8 Debrief</a>
+            <a href="#view-contacts" class="exec-button" data-target="contacts">Find Owners</a>
+          </div>
+        </div>
+        <aside class="exec-side-panel">
+          <h3>Executive focus areas</h3>
+          <div class="exec-check"><span>●</span><div><b>Decisions needed</b><br>Pricing support, legal/commercial review, executive approval, and resource alignment.</div></div>
+          <div class="exec-check"><span>●</span><div><b>Governance controls</b><br>Bid/no-bid, executive briefing, pricing intake, proposal readiness, and win/loss debrief.</div></div>
+          <div class="exec-check"><span>●</span><div><b>Regional consistency</b><br>Common process across North America, ANZ, Asia, and EMEA.</div></div>
+        </aside>
+      </section>
+
+      <section class="exec-kpi-grid">
+        <div class="exec-kpi"><div class="exec-kpi-label">Active Pipeline</div><div class="exec-kpi-value">42</div><div class="exec-kpi-note">Open pursuits visible to leadership.</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-label">Bid Stage</div><div class="exec-kpi-value">11</div><div class="exec-kpi-note">Proposal, pricing, or RFP activity.</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-label">Negotiation</div><div class="exec-kpi-value">7</div><div class="exec-kpi-note">Commercial, legal, or final decision stage.</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-label">At Risk</div><div class="exec-kpi-value">5</div><div class="exec-kpi-note">Needs attention or next-step ownership.</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-label">Governance Gates</div><div class="exec-kpi-value">5</div><div class="exec-kpi-note">Approval and quality-control checkpoints.</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-label">Win/Loss</div><div class="exec-kpi-value">Stage 8</div><div class="exec-kpi-note">Debrief required at close.</div></div>
+      </section>
+
+      <section class="exec-grid-2">
+        <div class="exec-panel accent">
+          <h2>Governance & Approval Points</h2>
+          <ul>
+            <li>Bid/no-bid decision required before committing full pursuit resources.</li>
+            <li>Executive briefing required for strategic bids and high-visibility opportunities.</li>
+            <li>Pricing intake required before proposal submission.</li>
+            <li>Win/loss debrief required at Stage 8 to capture decision drivers and lessons learned.</li>
+            <li>Profile export permissions require executive approval because traveler profile data contains protected PII and is owned by the traveler.</li>
+          </ul>
+          <div class="exec-note"><b>PII Governance Note:</b> Traveler profile data contains protected personally identifiable information. Executive approval is required before client profile export permissions are granted.</div>
+        </div>
+        <div class="exec-panel">
+          <h2>Decisions Needed</h2>
+          <p>Use this view to quickly identify where leadership support is needed to keep pursuits moving.</p>
+          <div class="decision-list">
+            <div class="decision-item"><span class="decision-pill">Pricing</span><div><b>Atlas Manufacturing</b><br>Pricing assumptions and savings estimate need review.</div><span>June 18</span></div>
+            <div class="decision-item"><span class="decision-pill blue">Legal</span><div><b>Summit Health Group</b><br>Commercial terms and legal alignment pending.</div><span>June 21</span></div>
+            <div class="decision-item"><span class="decision-pill green">Regional</span><div><b>Blue Harbor Logistics</b><br>Asia support and resource alignment needed.</div><span>June 28</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="exec-panel">
+        <h2>Regional Pipeline Overview</h2>
+        <div class="exec-table-wrap">
+          <table class="dashboard-table" aria-label="Executive regional pipeline overview">
+            <thead><tr><th>Region</th><th>Active Pipeline</th><th>Bid Stage</th><th>At Risk</th><th>Executive Action</th></tr></thead>
+            <tbody>
+              <tr><td>North America</td><td>18</td><td>6</td><td>2</td><td>Pricing support and proposal readiness review.</td></tr>
+              <tr><td>ANZ</td><td>7</td><td>2</td><td>1</td><td>Regional review and stakeholder alignment.</td></tr>
+              <tr><td>Asia</td><td>5</td><td>1</td><td>1</td><td>Resource alignment and next-step ownership.</td></tr>
+              <tr><td>EMEA</td><td>12</td><td>4</td><td>1</td><td>Legal/commercial review and executive briefing.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="exec-grid-3">
+        <div class="exec-panel"><h2>For Executives</h2><ul><li>Review global pipeline health.</li><li>Identify pursuits needing leadership support.</li><li>Monitor approval points and governance controls.</li><li>Compare regional activity.</li></ul></div>
+        <div class="exec-panel"><h2>Success Measures</h2><ul><li>Improved CRM consistency.</li><li>Faster bid/no-bid decisions.</li><li>Better proposal readiness.</li><li>More complete win/loss feedback.</li></ul></div>
+        <div class="exec-panel"><h2>Suggested Web Parts</h2><ul><li>Power BI dashboard.</li><li>SharePoint List with filters.</li><li>Highlighted Content.</li><li>People and ownership contacts.</li></ul></div>
+      </section>
+
+      <section class="content-card">
+        <a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a>
+      </section>
+    </section>
+
+    <section id="view-start-here" class="view">
+      <section class="hero">
+        <div class="eyebrow">Onboarding</div>
+        <h1>Start Here</h1>
+        <p>A guided path for new hires and team members who need a refresher on the sales toolkit, access needs, expectations, CRM requirements, key resources, and first milestones.</p>
+        <span class="owner">Page owner: Sales Enablement</span>
+      </section>
+      <section class="step-grid">
+        <a href="#view-templates" class="step-card" data-target="templates"><div class="num">01</div><h3>Review Sales Toolkit Deck</h3></a>
+        <a href="#view-contacts" class="step-card" data-target="contacts"><div class="num">02</div><h3>Complete System Access Checklist</h3></a>
+        <a href="#view-global-sales" class="step-card" data-target="global-sales"><div class="num">03</div><h3>Review Sales Team Structure</h3></a>
+        <a href="#view-customer-proof-hub" class="step-card" data-target="customer-proof-hub"><div class="num">04</div><h3>Review CRM Expectations</h3></a>
+        <a href="#view-training" class="step-card" data-target="training"><div class="num">05</div><h3>Complete 30/60/90 Plan</h3></a>
+      </section>
+      <section class="content-card">
+        <h2>Start Here Content</h2>
+        <p>Use this section to guide new team members through onboarding, required systems, basic process review, team structure, and first 30/60/90 day expectations.</p>
+        <a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a>
+      </section>
+    </section>
+
+    <section id="view-global-sales" class="view">
+      <section class="content-card">
+        <h2>Global Sales Toolkit Sections</h2>
+        <p>Click a tile below to open only that topic area.</p>
+      </section>
+      <section class="tile-grid">
+        <a href="#view-about" class="tile" data-target="about"><div class="tile-top"><div class="circle">01</div><div><h3>About CTM</h3><p>Company background, purpose, values, and differentiators.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-value" class="tile" data-target="value"><div class="tile-top"><div class="circle">02</div><div><h3>CTM Value Proposition</h3><p>Service, innovation, return, and customer-centric messaging.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-team" class="tile" data-target="team"><div class="tile-top"><div class="circle">03</div><div><h3>Sales Team</h3><p>Leadership, Sales Support, Technology Sales, and segment owners.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-goals" class="tile" data-target="goals"><div class="tile-top"><div class="circle">04</div><div><h3>Goals & Expectations</h3><p>Quotas, activity metrics, pipeline goals, and CRM expectations.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-territories" class="tile" data-target="territories"><div class="tile-top"><div class="circle">05</div><div><h3>Territories</h3><p>SME, Enterprise, Strategic, CTP, M&E, and specialized verticals.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-strategy" class="tile" data-target="strategy"><div class="tile-top"><div class="circle">06</div><div><h3>Sales Strategy</h3><p>Deal captain guidance, account planning, and win strategy.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-cycles" class="tile" data-target="cycles"><div class="tile-top"><div class="circle">07</div><div><h3>Sales Cycles</h3><p>Opportunity stages from qualified through closed won.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-global-tools" class="tile" data-target="global-tools"><div class="tile-top"><div class="circle">08</div><div><h3>Global Tools</h3><p>Shared sales tools, CRM resources, reporting, technology, and approved global resources.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-partner-agency" class="tile" data-target="partner-agency"><div class="tile-top"><div class="circle">09</div><div><h3>Partner Agency</h3><p>Partner agency guidance, referral process, ownership expectations, regional coordination, and support resources.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-sales-agent-dashboard" class="tile" data-target="sales-agent-dashboard"><div class="tile-top"><div class="circle">10</div><div><h3>Sales Agent Dashboard</h3><p>Account pipeline view showing each account owner, sales stage, next step, and risk.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-win-loss" class="tile" data-target="win-loss"><div class="tile-top"><div class="circle">11</div><div><h3>Win / Loss</h3><p>Win/loss analysis, competitor profiles, battlecards, and market updates.</p></div></div><div class="arrow">›</div></a>
+      </section>
+      <section class="content-card" style="margin-top:18px"><a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a></section>
+    </section>
+
+
+    <section id="view-partner-agency" class="view">
+      <section class="hero">
+        <div class="eyebrow">Global Sales</div>
+        <h1>Partner Agency</h1>
+        <p>Use this section to support partner agency opportunities, referrals, ownership alignment, regional coordination, and shared sales activity.</p>
+        <span class="owner">Page owner: Global Sales / Partner Agency Lead</span>
+      </section>
+
+      <section class="content-card">
+        <h2>Partner Agency Overview</h2>
+        <p>This area provides guidance for working with partner agencies, including when to involve a partner agency contact, how to document ownership, and how to align next steps across regions.</p>
+        <ul>
+          <li>Document partner agency relationship, account ownership, and opportunity source in CRM.</li>
+          <li>Confirm regional support needs for North America, ANZ, Asia, or EMEA.</li>
+          <li>Align sales owner, partner agency owner, next step, decision timeline, and follow-up cadence.</li>
+          <li>Capture referral source, client/prospect background, opportunity value, and required resources.</li>
+          <li>Use the Win/Loss Debrief to capture final outcome and partner agency feedback at close.</li>
+        </ul>
+      </section>
+
+      <section class="three-grid">
+        <a href="#view-partner-agency-process" class="region-tile" data-target="partner-agency-process"><h3>Process</h3><p>Referral intake, qualification, CRM documentation, ownership alignment, and next-step tracking.</p></a>
+        <a href="#view-partner-agency-resources" class="region-tile" data-target="partner-agency-resources"><h3>Resources</h3><p>Templates, approved messaging, partner agency contacts, regional guidance, and support links.</p></a>
+        <a href="#view-partner-agency-reporting" class="region-tile" data-target="partner-agency-reporting"><h3>Reporting</h3><p>Pipeline visibility, referrals, active opportunities, closed outcomes, and follow-up actions.</p></a>
+      </section>
+
+      <section class="content-card" style="margin-top:18px">
+        <h2>Suggested Web Parts</h2>
+        <p>Quick Links, Document Library, People, SharePoint List, Power BI, Highlighted Content, and metadata filters for Region, Partner Agency, Owner, Status, Sales Stage, and Review Date.</p>
+        <a href="#view-global-sales" class="backtop" data-target="global-sales">Back to Global Sales ↑</a>
+      </section>
+    </section>
+
+    <section id="view-partner-agency-process" class="view"><section class="content-card"><h2>Partner Agency Process</h2><p>Use this area for referral intake, qualifying questions, CRM fields, sales owner alignment, and partner agency follow-up expectations.</p><a href="#view-partner-agency" class="backtop" data-target="partner-agency">Back to Partner Agency ↑</a></section></section>
+    <section id="view-partner-agency-resources" class="view"><section class="content-card"><h2>Partner Agency Resources</h2><p>Use this area for approved partner agency messaging, templates, regional support contacts, process documents, and shared collateral.</p><a href="#view-partner-agency" class="backtop" data-target="partner-agency">Back to Partner Agency ↑</a></section></section>
+    <section id="view-partner-agency-reporting" class="view"><section class="content-card"><h2>Partner Agency Reporting</h2><p>Use this area to track referrals, pipeline stage, opportunity status, close outcomes, and follow-up actions by partner agency and region.</p><a href="#view-partner-agency" class="backtop" data-target="partner-agency">Back to Partner Agency ↑</a></section></section>
+
+    <section id="view-regions" class="view">
+      <section class="content-card"><h2>Regional Hubs</h2><p>Open a region below to view only that regional section.</p></section>
+      <section class="three-grid">
+        <a href="#view-north-america" class="region-tile" data-target="north-america"><h3>North America</h3><p>Territories, quotas, regional contacts, pursuit guidance, and toolkit resources.</p></a>
+        <a href="#view-anz" class="region-tile" data-target="anz"><h3>ANZ</h3><p>ANZ sales resources, market insights, regional contacts, and pursuit materials.</p></a>
+        <a href="#view-asia" class="region-tile" data-target="asia"><h3>Asia</h3><p>Asia sales resources, market insights, regional contacts, pursuit guidance, and localized materials.</p></a>
+        <a href="#view-emea" class="region-tile" data-target="emea"><h3>EMEA</h3><p>Regional resources, market updates, localized templates, and stakeholder guidance.</p></a>
+      </section>
+      <section class="content-card" style="margin-top:18px"><a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a></section>
+    </section>
+
+
+    <section id="view-global-tools" class="view">
+      <section class="hero">
+        <div class="eyebrow">Global Resources</div>
+        <h1>Global Tools</h1>
+        <p>Use this section to access shared sales systems, CRM guidance, reporting tools, approved resources, and support links used across regions.</p>
+        <span class="owner">Page owner: Sales Enablement / Sales Operations</span>
+      </section>
+
+      <section class="tile-grid">
+        <a href="#view-crm-tools" class="tile" data-target="crm-tools"><div class="tile-top"><div class="circle">01</div><div><h3>CRM Tools</h3><p>CRM access, opportunity updates, account notes, next steps, and pipeline hygiene guidance.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-reporting-dashboards" class="tile" data-target="reporting-dashboards"><div class="tile-top"><div class="circle">02</div><div><h3>Reporting Dashboards</h3><p>Pipeline, account activity, sales stage, forecast, and leadership reporting resources.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-sales-enablement-tools" class="tile" data-target="sales-enablement-tools"><div class="tile-top"><div class="circle">03</div><div><h3>Sales Enablement Tools</h3><p>Approved decks, playbooks, talk tracks, sales process guidance, and enablement resources.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-proposal-tools" class="tile" data-target="proposal-tools"><div class="tile-top"><div class="circle">04</div><div><h3>Proposal Tools</h3><p>Bid templates, proposal trackers, pricing intake resources, and submission support links.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-technology-sales-tools" class="tile" data-target="technology-sales-tools"><div class="tile-top"><div class="circle">05</div><div><h3>Technology Sales Tools</h3><p>Demo resources, product positioning, sales technology guides, and client-facing technology support.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-global-resource-library" class="tile" data-target="global-resource-library"><div class="tile-top"><div class="circle">06</div><div><h3>Global Resource Library</h3><p>Shared global documents, regional materials, approved collateral, and evergreen reference content.</p></div></div><div class="arrow">›</div></a>
+      </section>
+
+      <section class="content-card" style="margin-top:18px">
+        <h2>Suggested Web Parts</h2>
+        <p>Quick Links, Document Library, Highlighted Content, List, Power BI, File Viewer, People, and metadata filters for Region, Owner, Tool Type, Status, and Review Date.</p>
+        <a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a>
+      </section>
+    </section>
+
+    <section id="view-bid-toolkit" class="view">
+      <section class="hero">
+        <div class="eyebrow">Bid Toolkit</div>
+        <h1>Bid Toolkit</h1>
+        <p>Use this section to evaluate opportunities, align stakeholders, prepare pursuit strategy, collect pricing details, and manage the bid-writing process.</p>
+        <span class="owner">Page owner: Sales Support</span>
+      </section>
+
+      <section class="bid-section-grid">
+        <a href="#view-bid-no-bid" class="bid-card" data-target="bid-no-bid">
+          <div class="bid-num">01</div>
+          <h3>Bid / No-Bid</h3>
+          <p>Review fit, viability, profitability, and resource needs.</p>
+        </a>
+        <a href="#view-executive-briefing" class="bid-card" data-target="executive-briefing">
+          <div class="bid-num">02</div>
+          <h3>Executive Briefing</h3>
+          <p>Prepare pursuit strategy and internal alignment.</p>
+        </a>
+        <a href="#view-kickoff" class="bid-card" data-target="kickoff">
+          <div class="bid-num">03</div>
+          <h3>Kickoff</h3>
+          <p>Align GM, regional leads, Pricing, Sales Support, and SMEs.</p>
+        </a>
+        <a href="#view-pricing-intake" class="bid-card" data-target="pricing-intake">
+          <div class="bid-num">04</div>
+          <h3>Pricing Intake</h3>
+          <p>Gather assumptions, volumes, service model, and client inputs.</p>
+        </a>
+        <a href="#view-bid-writing-checklist" class="bid-card" data-target="bid-writing-checklist">
+          <div class="bid-num">05</div>
+          <h3>Bid-Writing Checklist</h3>
+          <p>Track questions, drafts, pricing, references, review, and final submission.</p>
+        </a>
+      </section>
+
+      <section class="content-card" style="margin-top:18px">
+        <h2>Suggested Web Parts</h2>
+        <p>Process graphic, Document Library, Checklist/List, File Viewer, People, and Quick Links.</p>
+        <a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a>
+      </section>
+    </section>
+
+    <section id="view-templates" class="view">
+      <section class="hero">
+        <div class="eyebrow">Templates</div>
+        <h1>Templates</h1>
+        <p>Use this section to access approved sales toolkit templates, planning tools, bid resources, customer proof hub forms, and CRM guidance.</p>
+        <span class="owner">Page owner: Sales Support / Sales Enablement</span>
+      </section>
+
+      <section class="tile-grid">
+        <a href="#view-sales-toolkit-deck" class="tile" data-target="sales-toolkit-deck"><div class="tile-top"><div class="circle">01</div><div><h3>Sales Toolkit Deck</h3><p>Main onboarding and enablement deck for sales process, team structure, territories, and expectations.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-sales-plan-template" class="tile" data-target="sales-plan-template"><div class="tile-top"><div class="circle">02</div><div><h3>Sales Plan Template</h3><p>Annual sales planning template for target accounts, campaigns, pipeline strategy, and milestones.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-executive-briefing-template" class="tile" data-target="executive-briefing-template"><div class="tile-top"><div class="circle">03</div><div><h3>Executive Briefing Template</h3><p>Template used to prepare pursuit strategy, bid/no-bid review, kickoff details, and internal alignment.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-bid-writing-checklist-template" class="tile" data-target="bid-writing-checklist-template"><div class="tile-top"><div class="circle">04</div><div><h3>Bid-Writing Checklist</h3><p>Checklist to track proposal steps, drafts, pricing, references, reviews, and final submission.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-customer-proof-hub-template" class="tile" data-target="customer-proof-hub-template"><div class="tile-top"><div class="circle">05</div><div><h3>Customer Proof Hub Template</h3><p>Template for Retain & Grow, CRM updates, action items, risks, and growth opportunities.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-crm-update-guide" class="tile" data-target="crm-update-guide"><div class="tile-top"><div class="circle">06</div><div><h3>CRM Update Guide</h3><p>Guide for documenting opportunities, client feedback, status notes, follow-up owners, and next steps.</p></div></div><div class="arrow">›</div></a>
+      </section>
+
+      <section class="content-card" style="margin-top:18px">
+        <h2>Suggested Web Parts</h2>
+        <p>Document Library, Highlighted Content, Quick Links, File Viewer, and metadata filters for Document Type, Audience, Process Area, Region, Owner, Review Date, and Status.</p>
+        <a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a>
+      </section>
+    </section>
+
+    <section id="view-win-loss" class="view">
+      <section class="hero">
+        <div class="eyebrow">Sales Insights</div>
+        <h1>Win / Loss</h1>
+        <p>Use this section to review sales performance, understand why CTM wins or loses opportunities, monitor competitors, and keep market intelligence current.</p>
+        <span class="owner">Page owner: Sales Enablement / Marketing</span>
+      </section>
+
+      <section class="bid-section-grid">
+        <a href="#view-win-loss-debrief" class="bid-card" data-target="win-loss-debrief">
+          <div class="bid-num">01</div>
+          <h3>Win/Loss Debrief</h3>
+          <p>Capture closing feedback, supplier selection, proposal quality, decision drivers, and lessons learned.</p>
+        </a>
+        <a href="#view-win-loss-analysis" class="bid-card" data-target="win-loss-analysis">
+          <div class="bid-num">02</div>
+          <h3>Win/Loss Analysis</h3>
+          <p>Review win ratio, loss trends, reasons won or lost, and key drivers by segment, region, and opportunity type.</p>
+        </a>
+        <a href="#view-competitor-profiles" class="bid-card" data-target="competitor-profiles">
+          <div class="bid-num">03</div>
+          <h3>Competitor Profiles</h3>
+          <p>Reference competitor summaries, strengths, weaknesses, positioning, and common client objections.</p>
+        </a>
+        <a href="#view-battlecards" class="bid-card" data-target="battlecards">
+          <div class="bid-num">04</div>
+          <h3>Battlecards</h3>
+          <p>Use approved talk tracks, differentiators, proof points, and objection-handling guidance during pursuits.</p>
+        </a>
+        <a href="#view-market-updates" class="bid-card" data-target="market-updates">
+          <div class="bid-num">05</div>
+          <h3>Market Updates</h3>
+          <p>Track industry trends, competitor changes, product updates, and market intelligence that may impact sales strategy.</p>
+        </a>
+      </section>
+
+      <section class="content-card" style="margin-top:18px">
+        <h2>Suggested Web Parts</h2>
+        <p>Document Library, Highlighted Content, News, Quick Links, File Viewer, Microsoft Forms/List for closing questionnaires, and owner/contact People web part.</p>
+        <a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a>
+      </section>
+    </section>
+
+    <section id="view-training" class="view">
+      <section class="hero">
+        <div class="eyebrow">Training</div>
+        <h1>Training</h1>
+        <p>Use this section for onboarding, milestone planning, recorded training, job aids, and refresher content.</p>
+        <span class="owner">Page owner: Sales Enablement</span>
+      </section>
+
+      <section class="bid-section-grid">
+        <a href="#view-new-hire-onboarding" class="bid-card" data-target="new-hire-onboarding">
+          <div class="bid-num">01</div>
+          <h3>New Hire Onboarding</h3>
+          <p>Guided onboarding path for new sales team members, including first steps, access needs, and required toolkit review.</p>
+        </a>
+        <a href="#view-thirty-sixty-ninety" class="bid-card" data-target="thirty-sixty-ninety">
+          <div class="bid-num">02</div>
+          <h3>30/60/90 Plans</h3>
+          <p>Milestone planning for ramp-up, skill development, pipeline building, and role expectations.</p>
+        </a>
+        <a href="#view-recorded-training" class="bid-card" data-target="recorded-training">
+          <div class="bid-num">03</div>
+          <h3>Recorded Training</h3>
+          <p>Training recordings, enablement sessions, process refreshers, and tool walkthroughs.</p>
+        </a>
+        <a href="#view-job-aids" class="bid-card" data-target="job-aids">
+          <div class="bid-num">04</div>
+          <h3>Job Aids</h3>
+          <p>Quick-reference guides, process steps, checklists, and how-to resources for daily sales activity.</p>
+        </a>
+        <a href="#view-refresher-content" class="bid-card" data-target="refresher-content">
+          <div class="bid-num">05</div>
+          <h3>Refresher Content</h3>
+          <p>Ongoing refreshers for CRM, bid process, sales strategy, templates, and regional updates.</p>
+        </a>
+      </section>
+
+      <section class="content-card" style="margin-top:18px">
+        <h2>Suggested Web Parts</h2>
+        <p>Stream video, Document Library, Checklist/List, Events, Quick Links, and Highlighted Content.</p>
+        <a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a>
+      </section>
+    </section>
+
+    <section id="view-customer-proof-hub" class="view">
+      <section class="content-card">
+        <h2>Customer Proof Hub</h2>
+        <p>Open one of the customer proof hub areas below to show only that section.</p>
+      </section>
+      <section class="three-grid">
+        <a href="#view-retain-grow" class="region-tile" data-target="retain-grow"><h3>Retain & Grow</h3><p>Review satisfaction, service performance, adoption, support trends, and risks to strengthen the partnership.</p></a>
+        <a href="#view-crm" class="region-tile" data-target="crm"><h3>CRM</h3><p>Document outcomes, client feedback, risks, action items, owners, and due dates.</p></a>
+        <a href="#view-growth" class="region-tile" data-target="growth"><h3>Growth Opportunities</h3><p>Identify expanded services, additional products, traveler adoption, and regional/global needs.</p></a>
+      </section>
+      <section class="content-card" style="margin-top:18px"><a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a></section>
+    </section>
+
+
+
+    <section id="view-sales-agent-dashboard" class="view">
+      <section class="hero">
+        <div class="eyebrow">Pipeline Visibility</div>
+        <h1>Sales Agent Dashboard</h1>
+        <p>A SharePoint-style account dashboard for sales agents and leaders to quickly see where each account sits in the sales cycle, who owns the next step, and which opportunities need attention.</p>
+        <span class="owner">Page owner: Sales Leadership / Sales Enablement</span>
+      </section>
+
+      <section class="dashboard-summary">
+        <div class="metric-card">
+          <div class="metric-label">Active Accounts</div>
+          <div class="metric-value">42</div>
+          <div class="metric-note">Open account opportunities currently being worked by the sales team.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Proposal Stage</div>
+          <div class="metric-value">11</div>
+          <div class="metric-note">Accounts with proposal, pricing, or bid-writing activity in progress.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Negotiation</div>
+          <div class="metric-value">7</div>
+          <div class="metric-note">Accounts in final review, contract, commercial, or decision discussions.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Needs Action</div>
+          <div class="metric-value">5</div>
+          <div class="metric-note">Accounts flagged for stalled activity, missing next step, or leadership support.</div>
+        </div>
+      </section>
+
+      <section class="content-card">
+        <h2>Sales Stage Overview</h2>
+        <p>Use the stage cards below to show the pipeline status by account. These can be connected to a SharePoint List, CRM export, or embedded Power BI report in the live site.</p>
+        <div class="pipeline-board">
+          <div class="stage-card"><h3>Prospecting</h3><p>Target account identified, initial research underway, outreach pending or started.</p></div>
+          <div class="stage-card"><h3>Qualified</h3><p>Account fit confirmed, needs identified, sales owner assigned, next meeting scheduled.</p></div>
+          <div class="stage-card"><h3>Discovery</h3><p>Client goals, decision process, pain points, current supplier, and success measures captured.</p></div>
+          <div class="stage-card"><h3>Proposal / Bid</h3><p>Proposal, RFP/RFI/RFQ, pricing intake, executive briefing, and bid-writing activity underway.</p></div>
+          <div class="stage-card"><h3>Negotiation</h3><p>Commercial review, legal review, final presentation, or decision-maker alignment in progress.</p></div>
+          <div class="stage-card"><h3>Closed / Nurture</h3><p>Closed won, closed lost, or moved to nurture with follow-up timing documented.</p></div>
+        </div>
+      </section>
+
+      <section class="content-card">
+        <h2>Account Stage Tracker</h2>
+        <table class="dashboard-table" aria-label="Sales account stage tracker">
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th>Sales Agent</th>
+              <th>Region</th>
+              <th>Sales Stage</th>
+              <th>Next Step</th>
+              <th>Target Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Northwind Global</td>
+              <td><span class="owner-tag">Agent Name</span></td>
+              <td>North America</td>
+              <td><span class="stage-pill">Discovery</span></td>
+              <td>Confirm service model and stakeholder requirements.</td>
+              <td>June 12</td>
+              <td><span class="stage-pill">On Track</span></td>
+            </tr>
+            <tr>
+              <td>Atlas Manufacturing</td>
+              <td><span class="owner-tag">Agent Name</span></td>
+              <td>EMEA</td>
+              <td><span class="stage-pill">Proposal / Bid</span></td>
+              <td>Complete pricing intake and draft executive briefing.</td>
+              <td>June 18</td>
+              <td><span class="risk-pill">Needs Pricing</span></td>
+            </tr>
+            <tr>
+              <td>Summit Health Group</td>
+              <td><span class="owner-tag">Agent Name</span></td>
+              <td>ANZ</td>
+              <td><span class="stage-pill">Negotiation</span></td>
+              <td>Finalize commercial review and legal alignment.</td>
+              <td>June 21</td>
+              <td><span class="stage-pill">Leadership Review</span></td>
+            </tr>
+            <tr>
+              <td>Vertex Energy</td>
+              <td><span class="owner-tag">Agent Name</span></td>
+              <td>North America</td>
+              <td><span class="stage-pill">Qualified</span></td>
+              <td>Schedule discovery call and identify decision makers.</td>
+              <td>June 24</td>
+              <td><span class="stage-pill">On Track</span></td>
+            </tr>
+            <tr>
+              <td>Blue Harbor Logistics</td>
+              <td><span class="owner-tag">Agent Name</span></td>
+              <td>Asia</td>
+              <td><span class="stage-pill">Prospecting</span></td>
+              <td>Complete account research and outreach plan.</td>
+              <td>June 28</td>
+              <td><span class="risk-pill">Needs Next Step</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="content-card">
+        <h2>Suggested Web Parts</h2>
+        <p>SharePoint List, Power BI, Quick Links, People, Filtered Document Library, CRM Export, and Highlighted Content. Recommended list fields: Account, Sales Agent, Region, Sales Stage, Opportunity Value, Probability, Last Activity, Next Step, Target Date, Risk, and Leadership Support Needed.</p>
+        <a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a>
+      </section>
+    </section>
+
+    <section id="view-contacts" class="view">
+      <section class="hero">
+        <div class="eyebrow">Contacts</div>
+        <h1>Help & Contacts</h1>
+        <p>Use this section to quickly locate the right support team, owner, or regional contact for sales process, bids, pricing, technology, and implementation questions.</p>
+        <span class="owner">Page owner: Sales Enablement / Sales Support</span>
+      </section>
+
+      <section class="tile-grid">
+        <a href="#view-sales-enablement" class="tile" data-target="sales-enablement"><div class="tile-top"><div class="circle">01</div><div><h3>Sales Enablement</h3><p>Toolkit ownership, training, adoption, process guidance, and sales resources.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-sales-support" class="tile" data-target="sales-support"><div class="tile-top"><div class="circle">02</div><div><h3>Sales Support</h3><p>RFP/RFI/RFQ support, executive summaries, presentations, and bid coordination.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-pricing-contact" class="tile" data-target="pricing-contact"><div class="tile-top"><div class="circle">03</div><div><h3>Pricing</h3><p>Cost models, pricing intake, profitability, ROI, savings estimates, and pricing grids.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-marketing-contact" class="tile" data-target="marketing-contact"><div class="tile-top"><div class="circle">04</div><div><h3>Marketing</h3><p>Branding, messaging, collateral, market updates, competitor content, and client-facing assets.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-technology-sales-contact" class="tile" data-target="technology-sales-contact"><div class="tile-top"><div class="circle">05</div><div><h3>Technology Sales</h3><p>Technology demos, product positioning, sales tools, and client technology questions.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-operations-contact" class="tile" data-target="operations-contact"><div class="tile-top"><div class="circle">06</div><div><h3>Operations</h3><p>Service models, operational feasibility, support structure, and delivery considerations.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-implementation-contact" class="tile" data-target="implementation-contact"><div class="tile-top"><div class="circle">07</div><div><h3>Implementation</h3><p>Implementation timelines, onboarding requirements, configuration, and transition planning.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-legal-contact" class="tile" data-target="legal-contact"><div class="tile-top"><div class="circle">08</div><div><h3>Legal</h3><p>Contract review, terms, legal approvals, and escalated legal questions.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-security-contact" class="tile" data-target="security-contact"><div class="tile-top"><div class="circle">09</div><div><h3>Security</h3><p>Security questionnaires, compliance, data protection, and client security requests.</p></div></div><div class="arrow">›</div></a>
+        <a href="#view-regional-leadership-contact" class="tile" data-target="regional-leadership-contact"><div class="tile-top"><div class="circle">10</div><div><h3>Regional Leadership</h3><p>Regional approvals, escalations, local market guidance, and leadership alignment.</p></div></div><div class="arrow">›</div></a>
+      </section>
+
+      <section class="content-card" style="margin-top:18px">
+        <h2>Suggested Web Parts</h2>
+        <p>People, Quick Links, Document Library, Org Chart/Image, and Contact List.</p>
+        <a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a>
+      </section>
+    </section>
+
+
+    <section id="view-crm-tools" class="view"><section class="content-card"><h2>CRM Tools</h2><p>Use this area for CRM access guidance, account records, opportunity updates, activity notes, close dates, owners, and next steps.</p><a href="#view-global-tools" class="backtop" data-target="global-tools">Back to Global Tools ↑</a></section></section>
+    <section id="view-reporting-dashboards" class="view"><section class="content-card"><h2>Reporting Dashboards</h2><p>Use this area for pipeline dashboards, account stage reporting, forecast views, activity reporting, and leadership summary views.</p><a href="#view-global-tools" class="backtop" data-target="global-tools">Back to Global Tools ↑</a></section></section>
+    <section id="view-sales-enablement-tools" class="view"><section class="content-card"><h2>Sales Enablement Tools</h2><p>Use this area for approved sales decks, playbooks, talk tracks, onboarding content, templates, and enablement guidance.</p><a href="#view-global-tools" class="backtop" data-target="global-tools">Back to Global Tools ↑</a></section></section>
+    <section id="view-proposal-tools" class="view"><section class="content-card"><h2>Proposal Tools</h2><p>Use this area for bid templates, RFP/RFI/RFQ resources, executive briefings, pricing intake links, and submission checklists.</p><a href="#view-global-tools" class="backtop" data-target="global-tools">Back to Global Tools ↑</a></section></section>
+    <section id="view-technology-sales-tools" class="view"><section class="content-card"><h2>Technology Sales Tools</h2><p>Use this area for demo support, technology positioning, product guidance, client-facing technology assets, and solution resources.</p><a href="#view-global-tools" class="backtop" data-target="global-tools">Back to Global Tools ↑</a></section></section>
+    <section id="view-global-resource-library" class="view"><section class="content-card"><h2>Global Resource Library</h2><p>Use this area for approved global collateral, regional resources, shared documents, owner guidance, and reviewed evergreen content.</p><a href="#view-global-tools" class="backtop" data-target="global-tools">Back to Global Tools ↑</a></section></section>
+
+    <section id="view-about" class="view"><section class="content-card"><h2>About CTM</h2><p>Company background, global presence, purpose, values, and differentiators.</p><a href="#view-global-sales" class="backtop" data-target="global-sales">Back to Global Sales ↑</a></section></section>
+    <section id="view-value" class="view"><section class="content-card"><h2>CTM Value Proposition</h2><p>Service, innovation, return, and customer-centric messaging used across sales content.</p><a href="#view-global-sales" class="backtop" data-target="global-sales">Back to Global Sales ↑</a></section></section>
+    <section id="view-team" class="view"><section class="content-card"><h2>Sales Team</h2><p>Leadership, Sales Support, Technology Sales, segment owners, and support crew references.</p><a href="#view-global-sales" class="backtop" data-target="global-sales">Back to Global Sales ↑</a></section></section>
+    <section id="view-goals" class="view"><section class="content-card"><h2>Goals & Expectations</h2><p>Annual goals, pipeline targets, activity expectations, and CRM requirements.</p><a href="#view-global-sales" class="backtop" data-target="global-sales">Back to Global Sales ↑</a></section></section>
+    <section id="view-territories" class="view"><section class="content-card"><h2>Territories</h2><p>Territory ownership, account responsibility, verticals, and regional coverage details.</p><a href="#view-global-sales" class="backtop" data-target="global-sales">Back to Global Sales ↑</a></section></section>
+    <section id="view-strategy" class="view"><section class="content-card"><h2>Sales Strategy</h2><p>Deal captain expectations, annual planning, win strategy, and account planning guidance.</p><a href="#view-global-sales" class="backtop" data-target="global-sales">Back to Global Sales ↑</a></section></section>
+    <section id="view-cycles" class="view"><section class="content-card"><h2>Sales Cycles</h2><p>Opportunity stages from qualified through closed won, including proposal and negotiation.</p><a href="#view-global-sales" class="backtop" data-target="global-sales">Back to Global Sales ↑</a></section></section>
+    <section id="view-north-america" class="view"><section class="content-card"><h2>North America</h2><p>North America territories, quotas, regional contacts, and local sales toolkit resources.</p><a href="#view-regions" class="backtop" data-target="regions">Back to Regions ↑</a></section></section>
+    <section id="view-emea" class="view"><section class="content-card"><h2>EMEA</h2><p>EMEA resources, market updates, localized templates, and stakeholder guidance.</p><a href="#view-regions" class="backtop" data-target="regions">Back to Regions ↑</a></section></section>
+    <section id="view-anz" class="view"><section class="content-card"><h2>ANZ</h2><p>ANZ sales resources, market insights, regional contacts, and pursuit materials.</p><a href="#view-regions" class="backtop" data-target="regions">Back to Regions ↑</a></section></section>
+    <section id="view-asia" class="view"><section class="content-card"><h2>Asia</h2><p>Asia sales resources, market insights, regional contacts, pursuit guidance, localized templates, and stakeholder support materials.</p><a href="#view-regions" class="backtop" data-target="regions">Back to Regions ↑</a></section></section>
+    <section id="view-retain-grow" class="view"><section class="content-card"><h2>Retain & Grow</h2><p>Review client satisfaction, service performance, adoption, support trends, risks, and relationship health.</p><a href="#view-customer-proof-hub" class="backtop" data-target="customer-proof-hub">Back to Customer Proof Hub ↑</a></section></section>
+    <section id="view-crm" class="view"><section class="content-card"><h2>CRM</h2><p>Document review outcomes, client feedback, action items, owners, risks, opportunities, and due dates in CRM.</p><a href="#view-customer-proof-hub" class="backtop" data-target="customer-proof-hub">Back to Customer Proof Hub ↑</a></section></section>
+    <section id="view-growth" class="view"><section class="content-card"><h2>Growth Opportunities</h2><p>Identify expanded services, additional products, traveler adoption, regional/global needs, and process improvements.</p><a href="#view-customer-proof-hub" class="backtop" data-target="customer-proof-hub">Back to Customer Proof Hub ↑</a></section></section>
+
+    <section id="view-bid-no-bid" class="view">
+      <section class="content-card">
+        <h2>Bid / No-Bid</h2>
+        <p><b>Purpose:</b> Review fit, viability, profitability, and resource needs before committing to a proposal response.</p>
+        <ul>
+          <li>Confirm CTM can provide a solution that meets the client’s goals.</li>
+          <li>Review basic requirements, profitability, existing relationships, and customer viability.</li>
+          <li>Use the Executive Briefing and Go/No-Go tab to support the decision.</li>
+        </ul>
+        <a href="#view-bid-toolkit" class="backtop" data-target="bid-toolkit">Back to Bid Toolkit ↑</a>
+      </section>
+    </section>
+
+    <section id="view-executive-briefing" class="view">
+      <section class="content-card">
+        <h2>Executive Briefing</h2>
+        <p><b>Purpose:</b> Prepare pursuit strategy and internal alignment before kickoff, pricing review, or submission planning.</p>
+        <ul>
+          <li>Capture customer overview, relationship status, goals, requirements, risks, and win strategy.</li>
+          <li>Use the briefing to align Sales, Sales Support, Pricing, regional leads, and leadership.</li>
+          <li>Complete as much detail as possible before the bid/no-bid call.</li>
+        </ul>
+        <a href="#view-bid-toolkit" class="backtop" data-target="bid-toolkit">Back to Bid Toolkit ↑</a>
+      </section>
+    </section>
+
+    <section id="view-kickoff" class="view">
+      <section class="content-card">
+        <h2>Kickoff</h2>
+        <p><b>Purpose:</b> Align GM, regional leads, Pricing, Sales Support, and SMEs at the start of the pursuit.</p>
+        <ul>
+          <li>Review high-level points from the Executive Briefing.</li>
+          <li>Discuss customer overview, solution needs, risks, pricing strategy, and deadlines.</li>
+          <li>Confirm roles, owners, next steps, and key target dates.</li>
+        </ul>
+        <a href="#view-bid-toolkit" class="backtop" data-target="bid-toolkit">Back to Bid Toolkit ↑</a>
+      </section>
+    </section>
+
+    <section id="view-pricing-intake" class="view">
+      <section class="content-card">
+        <h2>Pricing Intake</h2>
+        <p><b>Purpose:</b> Gather assumptions, volumes, service model, and client inputs needed to support pricing.</p>
+        <ul>
+          <li>Collect transaction volumes, spend detail, adoption rates, service requirements, and client pricing documents.</li>
+          <li>Share assumptions and timelines with Pricing as early as possible.</li>
+          <li>Confirm profitability, ROI, savings estimates, and approval needs.</li>
+        </ul>
+        <a href="#view-bid-toolkit" class="backtop" data-target="bid-toolkit">Back to Bid Toolkit ↑</a>
+      </section>
+    </section>
+
+    <section id="view-bid-writing-checklist" class="view">
+      <section class="content-card">
+        <h2>Bid-Writing Checklist</h2>
+        <p><b>Purpose:</b> Track the proposal response from document review through final submission.</p>
+        <ul>
+          <li>Confirm bid/no-bid call and kickoff call are complete.</li>
+          <li>Track questions, initial draft, pricing, references, SLAs, edits, review, and final response.</li>
+          <li>Confirm final files are reviewed by the sales lead before upload or submission.</li>
+        </ul>
+        <a href="#view-bid-toolkit" class="backtop" data-target="bid-toolkit">Back to Bid Toolkit ↑</a>
+      </section>
+    </section>
+    <section id="view-win-loss-analysis" class="view">
+      <section class="content-card">
+        <h2>Win/Loss Analysis</h2>
+        <p><b>Purpose:</b> Review win ratio, reasons won, reasons lost, trends, and key takeaways to improve future pursuit strategy.</p>
+        <div class="section-intro">Use this section to turn closed opportunity feedback into actionable insight for future pursuits, regional strategy, executive briefings, and proposal improvement.</div>
+        <div class="breakout-grid">
+          <div class="breakout-card">
+            <h3>Track Outcomes</h3>
+            <p>Track wins and losses consistently so leadership can identify patterns across the business.</p>
+            <ul>
+              <li>Region</li>
+              <li>Client segment</li>
+              <li>Vertical or industry</li>
+              <li>Deal size or opportunity value</li>
+            </ul>
+          </div>
+          <div class="breakout-card">
+            <h3>Capture Decision Drivers</h3>
+            <p>Document why CTM won or lost, using specific decision factors rather than general notes.</p>
+            <ul>
+              <li>Service model or support approach</li>
+              <li>Technology capabilities</li>
+              <li>Pricing or commercial position</li>
+              <li>Relationship strength or incumbent advantage</li>
+              <li>Global alignment or regional coverage</li>
+            </ul>
+          </div>
+          <div class="breakout-card">
+            <h3>Apply Lessons Learned</h3>
+            <p>Use debrief notes to improve future sales activity and pursuit readiness.</p>
+            <ul>
+              <li>Refine pursuit planning</li>
+              <li>Improve competitive positioning</li>
+              <li>Strengthen proposal strategy</li>
+              <li>Update battlecards, proof points, and executive briefings</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#view-win-loss" class="backtop" data-target="win-loss">Back to Win / Loss ↑</a>
+      </section>
+    </section>
+
+    <section id="view-win-loss-debrief" class="view">
+      <section class="wl-debrief-wrap">
+        <div class="wl-debrief-head">
+          <div>
+            <h2>Win / Loss Debrief</h2>
+            <p>Capture clear feedback after every closed opportunity so the team can improve positioning, proposal quality, pricing, and competitive strategy.</p>
+          </div>
+          <span class="wl-required-pill">Required at Stage 8</span>
+        </div>
+
+        <div class="wl-question-grid">
+          <div class="wl-question-card">
+            <h3>1. Why did you choose CTM?</h3>
+            <p>Capture the primary value drivers, differentiators, relationship factors, service strengths, technology, pricing, or proof points that influenced the decision.</p>
+          </div>
+          <div class="wl-question-card">
+            <h3>2. Which supplier did you choose?</h3>
+            <p>If CTM was not selected, document the selected competitor/supplier and any known reasons for the decision.</p>
+          </div>
+          <div class="wl-question-card">
+            <h3>3. How well was the proposal prepared?</h3>
+            <p>Rate proposal quality, clarity, accuracy, responsiveness, compliance, visuals, and whether the proposal addressed the client’s key needs.</p>
+          </div>
+          <div class="wl-question-card">
+            <h3>4. What could CTM improve?</h3>
+            <p>Document gaps in solution fit, pricing, timing, stakeholder engagement, presentation, implementation confidence, or proof points.</p>
+          </div>
+          <div class="wl-question-card">
+            <h3>5. What influenced the final decision?</h3>
+            <p>Capture decision criteria such as service model, cost, global coverage, technology, reporting, traveler experience, account management, and implementation plan.</p>
+          </div>
+          <div class="wl-question-card">
+            <h3>6. What follow-up actions are needed?</h3>
+            <p>Assign owner, due date, CRM update, competitive intelligence update, client follow-up, and content improvement actions.</p>
+          </div>
+        </div>
+
+        <div class="wl-step-row">
+          <div class="wl-step">1. Schedule<br>debrief</div>
+          <div class="wl-step">2. Capture decision<br>reason</div>
+          <div class="wl-step">3. Update CRM</div>
+          <div class="wl-step">4. Share insights</div>
+          <div class="wl-step">5. Improve toolkit</div>
+        </div>
+
+        <a href="#view-win-loss" class="backtop" data-target="win-loss">Back to Win / Loss ↑</a>
+      </section>
+    </section>
+
+    <section id="view-competitor-profiles" class="view">
+      <section class="content-card">
+        <h2>Competitor Profiles</h2>
+        <p><b>Purpose:</b> Provide quick reference information on key competitors and how CTM should position against them.</p>
+        <div class="section-intro">Use competitor profiles as a maintained source of truth for positioning, pursuit planning, and regional market awareness.</div>
+        <div class="breakout-grid">
+          <div class="breakout-card">
+            <h3>Profile Overview</h3>
+            <p>Include a clear summary of who the competitor is and how they typically position themselves.</p>
+            <ul>
+              <li>Competitor overview</li>
+              <li>Known strengths</li>
+              <li>Known weaknesses</li>
+              <li>Common pricing or service positioning</li>
+              <li>CTM differentiators</li>
+            </ul>
+          </div>
+          <div class="breakout-card">
+            <h3>Where They Show Up</h3>
+            <p>Document competitor presence where it is relevant to sales strategy.</p>
+            <ul>
+              <li>Region</li>
+              <li>Vertical or industry</li>
+              <li>Client segment</li>
+              <li>Common opportunity type</li>
+              <li>Known incumbent relationships</li>
+            </ul>
+          </div>
+          <div class="breakout-card">
+            <h3>Review Cadence</h3>
+            <p>Keep profiles current so the sales team is using reliable, approved information.</p>
+            <ul>
+              <li>Assign a profile owner</li>
+              <li>Add last reviewed date</li>
+              <li>Update after major wins or losses</li>
+              <li>Refresh on a regular cadence</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#view-win-loss" class="backtop" data-target="win-loss">Back to Win / Loss ↑</a>
+      </section>
+    </section>
+
+    <section id="view-battlecards" class="view">
+      <section class="content-card">
+        <h2>Battlecards</h2>
+        <p><b>Purpose:</b> Give sales teams concise, approved guidance for competitive pursuits.</p>
+        <div class="section-intro">Battlecards should help the team prepare quickly, speak consistently, and respond confidently during competitive opportunities.</div>
+        <div class="breakout-grid">
+          <div class="breakout-card">
+            <h3>What to Include</h3>
+            <p>Build battlecards around the information sales teams need during active pursuits.</p>
+            <ul>
+              <li>CTM differentiators</li>
+              <li>Client pain points</li>
+              <li>Recommended talk tracks</li>
+              <li>Proof points and customer examples</li>
+              <li>Objection-handling guidance</li>
+            </ul>
+          </div>
+          <div class="breakout-card">
+            <h3>When to Use</h3>
+            <p>Use battlecards at key points where positioning and consistency matter most.</p>
+            <ul>
+              <li>Sales planning</li>
+              <li>Bid/no-bid review</li>
+              <li>Client presentations</li>
+              <li>Final negotiations</li>
+              <li>Competitive response preparation</li>
+            </ul>
+          </div>
+          <div class="breakout-card">
+            <h3>Publishing Rules</h3>
+            <p>Keep the published library clean, approved, and easy to trust.</p>
+            <ul>
+              <li>Store only approved battlecards</li>
+              <li>Use the published template library</li>
+              <li>Remove outdated versions</li>
+              <li>Include owner and review date</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#view-win-loss" class="backtop" data-target="win-loss">Back to Win / Loss ↑</a>
+      </section>
+    </section>
+
+    <section id="view-market-updates" class="view">
+      <section class="content-card">
+        <h2>Market Updates</h2>
+        <p><b>Purpose:</b> Keep the sales team informed on industry, competitor, technology, and market changes that may impact pursuit strategy.</p>
+        <div class="section-intro">Market updates should connect external changes to clear sales actions, messaging updates, and leadership awareness.</div>
+        <div class="breakout-grid">
+          <div class="breakout-card">
+            <h3>What to Share</h3>
+            <p>Capture updates that may affect client conversations, proposal strategy, or competitive positioning.</p>
+            <ul>
+              <li>Competitor announcements</li>
+              <li>Product or platform updates</li>
+              <li>Client trends</li>
+              <li>Travel market changes</li>
+              <li>Relevant industry news</li>
+            </ul>
+          </div>
+          <div class="breakout-card">
+            <h3>How to Use Updates</h3>
+            <p>Turn updates into refreshed sales materials and stronger pursuit content.</p>
+            <ul>
+              <li>Refresh battlecards</li>
+              <li>Update proposal language</li>
+              <li>Revise sales messaging</li>
+              <li>Inform executive briefings</li>
+              <li>Support bid/no-bid discussions</li>
+            </ul>
+          </div>
+          <div class="breakout-card">
+            <h3>Action Required</h3>
+            <p>Clearly identify when a market update requires ownership or follow-up.</p>
+            <ul>
+              <li>Sales follow-up</li>
+              <li>Marketing content update</li>
+              <li>Pricing review</li>
+              <li>Technology Sales input</li>
+              <li>Leadership awareness or escalation</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#view-win-loss" class="backtop" data-target="win-loss">Back to Win / Loss ↑</a>
+      </section>
+    </section>
+
+    <section id="view-new-hire-onboarding" class="view">
+      <section class="content-card">
+        <h2>New Hire Onboarding</h2>
+        <p>Use this section for the new hire path, first-week checklist, required access, toolkit review, team contacts, and onboarding milestones.</p>
+        <a href="#view-training" class="backtop" data-target="training">Back to Training ↑</a>
+      </section>
+    </section>
+
+    <section id="view-thirty-sixty-ninety" class="view">
+      <section class="content-card">
+        <h2>30/60/90 Plans</h2>
+        <p>Use this section to outline ramp-up expectations, learning goals, pipeline activity, client engagement, CRM habits, and development milestones.</p>
+        <a href="#view-training" class="backtop" data-target="training">Back to Training ↑</a>
+      </section>
+    </section>
+
+    <section id="view-recorded-training" class="view">
+      <section class="content-card">
+        <h2>Recorded Training</h2>
+        <p>Use this section to house training recordings, sales enablement sessions, tool walkthroughs, process refreshers, and regional training content.</p>
+        <a href="#view-training" class="backtop" data-target="training">Back to Training ↑</a>
+      </section>
+    </section>
+
+    <section id="view-job-aids" class="view">
+      <section class="content-card">
+        <h2>Job Aids</h2>
+        <p>Use this section for quick-reference guides, checklists, process steps, template instructions, and day-to-day support materials.</p>
+        <a href="#view-training" class="backtop" data-target="training">Back to Training ↑</a>
+      </section>
+    </section>
+
+    <section id="view-refresher-content" class="view">
+      <section class="content-card">
+        <h2>Refresher Content</h2>
+        <p>Use this section for ongoing refreshers on CRM, bid process, sales strategy, templates, regional updates, and key process changes.</p>
+        <a href="#view-training" class="backtop" data-target="training">Back to Training ↑</a>
+      </section>
+    </section>
+
+    <section id="view-sales-enablement" class="view">
+      <section class="content-card">
+        <h2>Sales Enablement</h2>
+        <p>Support area for toolkit ownership, training, adoption, enablement resources, process guidance, and sales readiness.</p>
+        <a href="#view-contacts" class="backtop" data-target="contacts">Back to Help & Contacts ↑</a>
+      </section>
+    </section>
+
+    <section id="view-sales-support" class="view">
+      <section class="content-card">
+        <h2>Sales Support</h2>
+        <p>Support area for bid writing, RFP/RFI/RFQ support, executive summaries, presentation design, sales reporting, and enablement tools.</p>
+        <a href="#view-contacts" class="backtop" data-target="contacts">Back to Help & Contacts ↑</a>
+      </section>
+    </section>
+
+    <section id="view-pricing-contact" class="view">
+      <section class="content-card">
+        <h2>Pricing</h2>
+        <p>Support area for pricing intake, cost models, profitability review, ROI, savings estimates, assumptions, and client pricing grids.</p>
+        <a href="#view-contacts" class="backtop" data-target="contacts">Back to Help & Contacts ↑</a>
+      </section>
+    </section>
+
+    <section id="view-marketing-contact" class="view">
+      <section class="content-card">
+        <h2>Marketing</h2>
+        <p>Support area for brand guidance, messaging, collateral, market updates, competitor content, client-facing assets, and campaign support.</p>
+        <a href="#view-contacts" class="backtop" data-target="contacts">Back to Help & Contacts ↑</a>
+      </section>
+    </section>
+
+    <section id="view-technology-sales-contact" class="view">
+      <section class="content-card">
+        <h2>Technology Sales</h2>
+        <p>Support area for technology demos, product positioning, solution questions, client technology requirements, and sales tools.</p>
+        <a href="#view-contacts" class="backtop" data-target="contacts">Back to Help & Contacts ↑</a>
+      </section>
+    </section>
+
+    <section id="view-operations-contact" class="view">
+      <section class="content-card">
+        <h2>Operations</h2>
+        <p>Support area for operational feasibility, service delivery, support models, staffing considerations, and process alignment.</p>
+        <a href="#view-contacts" class="backtop" data-target="contacts">Back to Help & Contacts ↑</a>
+      </section>
+    </section>
+
+    <section id="view-implementation-contact" class="view">
+      <section class="content-card">
+        <h2>Implementation</h2>
+        <p>Support area for client onboarding, implementation timelines, configuration, transition planning, and launch readiness.</p>
+        <a href="#view-contacts" class="backtop" data-target="contacts">Back to Help & Contacts ↑</a>
+      </section>
+    </section>
+
+    <section id="view-legal-contact" class="view">
+      <section class="content-card">
+        <h2>Legal</h2>
+        <p>Support area for contract review, terms and conditions, approvals, escalations, and legal guidance during pursuits.</p>
+        <a href="#view-contacts" class="backtop" data-target="contacts">Back to Help & Contacts ↑</a>
+      </section>
+    </section>
+
+    <section id="view-security-contact" class="view">
+      <section class="content-card">
+        <h2>Security</h2>
+        <p>Support area for security questionnaires, compliance, data protection, security reviews, and client security requirements.</p>
+        <a href="#view-contacts" class="backtop" data-target="contacts">Back to Help & Contacts ↑</a>
+      </section>
+    </section>
+
+    <section id="view-regional-leadership-contact" class="view">
+      <section class="content-card">
+        <h2>Regional Leadership</h2>
+        <p>Support area for regional approvals, escalations, market guidance, leadership alignment, and local pursuit support.</p>
+        <a href="#view-contacts" class="backtop" data-target="contacts">Back to Help & Contacts ↑</a>
+      </section>
+    </section>
+
+    <section id="view-sales-toolkit-deck" class="view">
+      <section class="content-card">
+        <h2>Sales Toolkit Deck</h2>
+        <p>Main onboarding and enablement deck for sales team members. This should include sales process guidance, team structure, territories, quotas, expectations, bid process, and key resources.</p>
+        <a href="#view-templates" class="backtop" data-target="templates">Back to Templates ↑</a>
+      </section>
+    </section>
+
+    <section id="view-sales-plan-template" class="view">
+      <section class="content-card">
+        <h2>Sales Plan Template</h2>
+        <p>Annual planning template used to document target accounts, pipeline-building strategy, nurture campaigns, competition planning, networking, milestones, and mitigation strategies.</p>
+        <a href="#view-templates" class="backtop" data-target="templates">Back to Templates ↑</a>
+      </section>
+    </section>
+
+    <section id="view-executive-briefing-template" class="view">
+      <section class="content-card">
+        <h2>Executive Briefing Template</h2>
+        <p>Template used to prepare the pursuit strategy, bid/no-bid decision, kickoff call, pricing discussion, customer overview, requirements, risks, win strategy, and internal alignment.</p>
+        <a href="#view-templates" class="backtop" data-target="templates">Back to Templates ↑</a>
+      </section>
+    </section>
+
+    <section id="view-bid-writing-checklist-template" class="view">
+      <section class="content-card">
+        <h2>Bid-Writing Checklist</h2>
+        <p>Checklist used to manage bid progress from document review through final submission, including kickoff, questions, pricing, references, drafts, edits, final review, and upload or client submission.</p>
+        <a href="#view-templates" class="backtop" data-target="templates">Back to Templates ↑</a>
+      </section>
+    </section>
+
+    <section id="view-customer-proof-hub-template" class="view">
+      <section class="content-card">
+        <h2>Customer Proof Hub Template</h2>
+        <p>Template used to document client health, Retain & Grow opportunities, CRM notes, action items, risks, owners, due dates, and growth opportunities.</p>
+        <a href="#view-templates" class="backtop" data-target="templates">Back to Templates ↑</a>
+      </section>
+    </section>
+
+    <section id="view-crm-update-guide" class="view">
+      <section class="content-card">
+        <h2>CRM Update Guide</h2>
+        <p>Guide for keeping CRM current with opportunity details, status notes, client feedback, next steps, risks, follow-up ownership, and customer proof hub outcomes.</p>
+        <a href="#view-templates" class="backtop" data-target="templates">Back to Templates ↑</a>
+      </section>
+    </section>
+
+  
+    <section id="view-sales-stages" class="view">
+      <section class="hero">
+        <div class="eyebrow">CRM Opportunity Flow</div>
+        <h1>Sales Stages</h1>
+        <p>Use this dashboard-style section to align opportunity stage, probability, required criteria, and deliverables in CRM.</p>
+        <span class="owner">Page owner: Sales Leadership / Sales Enablement</span>
+      </section>
+
+      <section class="dashboard-summary">
+        <div class="metric-card">
+          <div class="metric-label">CRM Stages</div>
+          <div class="metric-value">0–8</div>
+          <div class="metric-note">Full sales-stage path from lead generation through closed won/loss.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Probability Range</div>
+          <div class="metric-value">0–100%</div>
+          <div class="metric-note">Probability changes by stage and engagement level.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Silent Checkpoint</div>
+          <div class="metric-value">10</div>
+          <div class="metric-note">Business days without response during later stages.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Close Review</div>
+          <div class="metric-value">6+ mo.</div>
+          <div class="metric-note">No activity after last prospect meeting.</div>
+        </div>
+      </section>
+
+      <section class="content-card">
+        <h2>CRM Stage Flow</h2>
+        <p>Use the cards below as a visual guide for moving opportunities through the sales cycle.</p>
+        <div class="pipeline-board">
+          <div class="stage-card"><h3>0 Lead Generation / Prospecting</h3><p>Assigned territory, dormant account, contacts identified, nurture or marketing list.</p></div>
+          <div class="stage-card"><h3>1 Active</h3><p>Need and interest established, prospect contact made, initial intro call scheduled.</p></div>
+          <div class="stage-card"><h3>2 Discovery / Qualification</h3><p>Goals shared, pain points identified, next meeting scheduled, recap sent and confirmed.</p></div>
+          <div class="stage-card"><h3>3 Solution Development Engagement</h3><p>Key players accessed, solution aligned, buying process understood, relationship map created.</p></div>
+          <div class="stage-card"><h3>4 Proposal Submitted</h3><p>RFP/RFI received, go/no-go complete, bid requirements captured, proposal submitted.</p></div>
+          <div class="stage-card"><h3>5 Presentation Stage</h3><p>Stakeholder presentation completed or sent, solutions aligned, follow-up tracked.</p></div>
+          <div class="stage-card"><h3>6 Short Listed / Negotiations</h3><p>Shortlisted, clarifications active, B&amp;F pricing discussions, OTL review, or contract draft sent.</p></div>
+          <div class="stage-card"><h3>7 Verbal Award</h3><p>Business requested, verbal approval granted, written intent to award, and redlining underway.</p></div>
+          <div class="stage-card"><h3>8 Closed - Won / Loss</h3><p>Formal contract signed, confirmed loss, no decision, or no activity after six months.</p></div>
+        </div>
+      </section>
+
+      <section class="content-card">
+        <h2>Stage Detail Tracker</h2>
+        <table class="dashboard-table" aria-label="Sales stages detail tracker">
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Criteria</th>
+              <th>Probability</th>
+              <th>Deliverable Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="stage-pill">0 - Lead Generation / Prospecting</span></td><td>Assigned territory or currently dormant.</td><td>0%</td><td>Contacts identified; actively on nurture or marketing campaign list.</td></tr>
+            <tr><td><span class="stage-pill">1 - Active</span></td><td>Need and interest established; prospect contact made.</td><td>0%</td><td>Initial intro call scheduled.</td></tr>
+            <tr><td><span class="stage-pill">2 - Discovery / Qualification</span></td><td>Goals shared, pain points identified, next meeting scheduled.</td><td>10%</td><td>Next steps identified; meeting recap sent and confirmed by prospect.</td></tr>
+            <tr><td><span class="stage-pill">3 - Solution Development Engagement</span></td><td>Key player access, consultant-led, aligned solutions, buying process understood.</td><td>20%</td><td>Relationship map, TTV data, sequence of events, internal champion, stakeholder access.</td></tr>
+            <tr><td><span class="stage-pill">4 - Proposal Submitted</span></td><td>RFP/RFI received, go/no-go/withdrawn, response or proactive proposal submitted.</td><td>0–30%</td><td>Bid requirements captured, decision timeline confirmed, proposal submitted.</td></tr>
+            <tr><td><span class="stage-pill">5 - Presentation Stage</span></td><td>Presentation with stakeholders or presentation sent.</td><td>40%</td><td>Engaging presentation/discussion with solutions aligned.</td></tr>
+            <tr><td><span class="stage-pill">6 - Short Listed / Negotiations</span></td><td>Shortlisted, clarification questions, B&F pricing, OTL, contract draft.</td><td>50–85%</td><td>Next-process email, pricing gaps addressed, Scotwork steps, executive sponsor engagement, contract draft.</td></tr>
+            <tr><td><span class="stage-pill">7 - Verbal Award</span></td><td>Asked for business; verbal approval granted.</td><td>95%</td><td>Written intent to award received; active redlining to agreed terms.</td></tr>
+            <tr><td><span class="stage-pill">8 - Closed Won / Loss</span></td><td>Formal contract signed, confirmed loss, no decision, or no activity.</td><td>0–100%</td><td>Executed agreement, formal loss notification, or closed after 6+ months with no engagement.</td></tr>
+          </tbody>
+        </table>
+        <a href="#view-home" class="backtop" data-target="home">Back to Home ↑</a>
+      </section>
+    </section>
+
+  </main>
+
+  <footer>CTM Global Sales Toolkit Hub — section-only clickable SharePoint mockup with Win / Loss, Debrief, Global Tools, Asia, and Sales Agent Dashboard</footer>
+
+<script>
+(function(){
+  const views = document.querySelectorAll('.view');
+  const navPills = document.querySelectorAll('.pill[data-target]');
+  const allTargets = document.querySelectorAll('[data-target]');
+
+  function activateNav(target){
+    navPills.forEach(pill => {
+      pill.classList.toggle('active', pill.getAttribute('data-target') === target);
+    });
+  }
+
+  function showView(target){
+    views.forEach(view => view.classList.remove('active'));
+    const selected = document.getElementById('view-' + target);
+    if(selected){
+      selected.classList.add('active');
+      const navTargets = ['home','start-here','global-sales','global-tools','regions','bid-toolkit','templates','win-loss','win-loss-debrief','training','customer-proof-hub','sales-agent-dashboard','contacts'];
+      if(navTargets.includes(target)){
+        activateNav(target);
+      } else {
+        navPills.forEach(pill => pill.classList.remove('active'));
+        if(['bid-no-bid','executive-briefing','kickoff','pricing-intake','bid-writing-checklist'].includes(target)){
+          activateNav('bid-toolkit');
+        }
+        if(['win-loss-analysis','competitor-profiles','battlecards','market-updates','win-loss-debrief'].includes(target)){
+          activateNav('win-loss');
+        }
+        if(['crm-tools','reporting-dashboards','sales-enablement-tools','proposal-tools','technology-sales-tools','global-resource-library'].includes(target)){
+          activateNav('global-tools');
+        }
+      }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  }
+
+  allTargets.forEach(link => {
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      showView(this.getAttribute('data-target'));
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  function showView(target){
+    if(!target) return;
+
+    var targetView = document.getElementById('view-' + target);
+    if(!targetView && target.indexOf('view-') === 0){
+      targetView = document.getElementById(target);
+      target = target.replace(/^view-/, '');
+    }
+    if(!targetView) return;
+
+    document.querySelectorAll('.view').forEach(function(view){
+      view.classList.remove('active');
+      view.style.display = 'none';
+    });
+
+    targetView.classList.add('active');
+    targetView.style.display = 'block';
+
+    document.querySelectorAll('.pill').forEach(function(pill){
+      pill.classList.toggle('active', pill.getAttribute('data-target') === target);
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function wireClicks(){
+    document.querySelectorAll('[data-target]').forEach(function(el){
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function(e){
+        var target = el.getAttribute('data-target');
+        if(target && document.getElementById('view-' + target)){
+          e.preventDefault();
+          showView(target);
+        }
+      });
+    });
+
+    document.querySelectorAll('a[href^="#view-"]').forEach(function(el){
+      el.addEventListener('click', function(e){
+        var target = el.getAttribute('href').replace('#view-','');
+        if(document.getElementById('view-' + target)){
+          e.preventDefault();
+          showView(target);
+        }
+      });
+    });
+
+    document.querySelectorAll('a[href="#"]').forEach(function(el){
+      if(el.getAttribute('data-target')){
+        el.addEventListener('click', function(e){ e.preventDefault(); });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.view').forEach(function(view){
+      if(view.classList.contains('active')){
+        view.style.display = 'block';
+      } else {
+        view.style.display = 'none';
+      }
+    });
+    wireClicks();
+
+    if(location.hash && location.hash.indexOf('#view-') === 0){
+      showView(location.hash.replace('#view-',''));
+    }
+  });
+
+  window.showView = showView;
+})();
+</script>
+
+<script>
+(function(){
+  function textOnly(el){ return (el ? el.textContent : '').replace(/\s+/g,' ').trim(); }
+  function getTitle(view){
+    var h = view.querySelector('h1, h2, h3');
+    return h ? textOnly(h) : view.id.replace(/^view-/,'').replace(/-/g,' ');
+  }
+  function getSummary(view){
+    var p = view.querySelector('p');
+    return p ? textOnly(p).slice(0,180) : 'Open this toolkit section.';
+  }
+  function highlight(text, query){
+    if(!query) return text;
+    var safe = query.replace(/[.*+?^${}()|[\]\]/g, '\$&');
+    return text.replace(new RegExp('('+safe+')','ig'), '<mark class="search-hit">$1</mark>');
+  }
+  function runSearch(){
+    var input = document.getElementById('siteSearch');
+    var results = document.getElementById('searchResults');
+    if(!input || !results) return;
+    var q = input.value.trim().toLowerCase();
+    results.innerHTML = '';
+    if(q.length < 2){ results.classList.remove('active'); return; }
+
+    var matches = Array.from(document.querySelectorAll('.view')).map(function(view){
+      var title = getTitle(view);
+      var summary = getSummary(view);
+      var haystack = textOnly(view).toLowerCase();
+      return {view:view, title:title, summary:summary, score:(title.toLowerCase().includes(q)?3:0)+(summary.toLowerCase().includes(q)?2:0)+(haystack.includes(q)?1:0)};
+    }).filter(function(item){ return item.score > 0; })
+      .sort(function(a,b){ return b.score - a.score || a.title.localeCompare(b.title); })
+      .slice(0,12);
+
+    results.classList.add('active');
+    var heading = document.createElement('div');
+    heading.className = 'search-results-title';
+    heading.textContent = matches.length ? 'Search results' : 'No matching sections found';
+    results.appendChild(heading);
+
+    if(!matches.length){
+      var empty = document.createElement('div');
+      empty.className = 'search-empty';
+      empty.textContent = 'Try searching for pipeline, bid, pricing, win loss, region, CRM, training, or contacts.';
+      results.appendChild(empty);
+      return;
+    }
+
+    matches.forEach(function(item){
+      var target = item.view.id.replace(/^view-/,'');
+      var a = document.createElement('a');
+      a.href = '#view-' + target;
+      a.className = 'search-result-item';
+      a.setAttribute('data-target', target);
+      a.innerHTML = '<strong>' + highlight(item.title, q) + '</strong><span>' + highlight(item.summary, q) + '</span>';
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        results.classList.remove('active');
+        input.value = '';
+        if(window.showView){ window.showView(target); }
+        else { location.hash = '#view-' + target; }
+      });
+      results.appendChild(a);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var input = document.getElementById('siteSearch');
+    var clear = document.getElementById('clearSearch');
+    var results = document.getElementById('searchResults');
+    if(input){ input.addEventListener('input', runSearch); }
+    if(clear){ clear.addEventListener('click', function(){ input.value=''; if(results){results.classList.remove('active');results.innerHTML='';} input.focus(); }); }
+    document.addEventListener('click', function(e){
+      if(results && !e.target.closest('.search-shell')) results.classList.remove('active');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
