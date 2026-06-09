@@ -121,7 +121,7 @@
   .metric-label{color:var(--muted);font-size:14px;margin-bottom:8px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
   .metric-value{font-size:34px;font-weight:800;color:#0b1f35;margin-bottom:6px}
   .metric-note{color:#344054;line-height:1.45;font-size:14px}
-  .pipeline-board{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:22px 0}
+  .pipeline-board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
   .stage-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 2px 8px rgba(15,23,42,.05);border-top:6px solid var(--ctm-teal)}
   .stage-card:nth-child(2){border-top-color:#4aa7b6}.stage-card:nth-child(3){border-top-color:var(--ctm-green)}.stage-card:nth-child(4){border-top-color:#f0b429}.stage-card:nth-child(5){border-top-color:#ec7a32}.stage-card:nth-child(6){border-top-color:#667085}
   .stage-card h3{margin:0 0 8px;font-size:16px;color:#0b1f35}.stage-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
@@ -1077,15 +1077,15 @@
       <section class="hero">
         <div class="eyebrow">CRM Opportunity Flow</div>
         <h1>Sales Stages</h1>
-        <p>Use this dashboard-style section to align opportunity stage, probability, required criteria, and deliverables in CRM.</p>
+        <p>Use this dashboard-style section to align the 8 CRM sales stages, probability, required criteria, and deliverables. Stage 0 is included as Lead Generation / Prospecting.</p>
         <span class="owner">Page owner: Sales Leadership / Sales Enablement</span>
       </section>
 
       <section class="dashboard-summary">
         <div class="metric-card">
-          <div class="metric-label">CRM Stages</div>
-          <div class="metric-value">9</div>
-          <div class="metric-note">Lead generation through closed won/loss.</div>
+          <div class="metric-label">CRM Sales Stages</div>
+          <div class="metric-value">8</div>
+          <div class="metric-note">Active through Closed Won/Loss, with Stage 0 used for Lead Generation / Prospecting.</div>
         </div>
         <div class="metric-card">
           <div class="metric-label">Probability Range</div>
@@ -1108,12 +1108,14 @@
         <h2>CRM Stage Flow</h2>
         <p>Use the cards below as a visual guide for moving opportunities through the sales cycle.</p>
         <div class="pipeline-board">
-          <div class="stage-card"><h3>0 Lead Generation</h3><p>Assigned territory, dormant account, contacts identified, nurture or marketing list.</p></div>
-          <div class="stage-card"><h3>1 Active</h3><p>Need and interest established, prospect contact made, initial intro call scheduled.</p></div>
-          <div class="stage-card"><h3>2 Discovery</h3><p>Goals shared, pain points identified, next meeting scheduled, recap sent and confirmed.</p></div>
-          <div class="stage-card"><h3>3 Solution Development</h3><p>Key players accessed, solution aligned, buying process understood, relationship map created.</p></div>
-          <div class="stage-card"><h3>4 Proposal Submitted</h3><p>RFP/RFI received, go/no-go complete, bid requirements captured, proposal submitted.</p></div>
-          <div class="stage-card"><h3>5 Presentation</h3><p>Stakeholder presentation completed or sent, solutions aligned, follow-up tracked.</p></div>
+          <div class="stage-card"><h3>1 Active</h3><p>Need and interest established, prospect contact made, and initial intro call scheduled.</p></div>
+          <div class="stage-card"><h3>2 Discovery / Qualification</h3><p>Goals shared, pain points identified, next meeting scheduled, and recap confirmed.</p></div>
+          <div class="stage-card"><h3>3 Solution Development</h3><p>Key players accessed, aligned solution developed, buying process understood, and relationship map created.</p></div>
+          <div class="stage-card"><h3>4 Proposal Submitted</h3><p>RFP/RFI received, go/no-go completed, requirements captured, and proposal submitted.</p></div>
+          <div class="stage-card"><h3>5 Presentation Stage</h3><p>Stakeholder presentation completed or sent, solutions aligned, and follow-up tracked.</p></div>
+          <div class="stage-card"><h3>6 Short Listed / Negotiations</h3><p>Shortlisted, clarifications active, B&F pricing reviewed, OTL or contract draft in progress.</p></div>
+          <div class="stage-card"><h3>7 Verbal Award</h3><p>Business requested, verbal approval granted, written intent to award received, and redlines active.</p></div>
+          <div class="stage-card"><h3>8 Closed - Won / Loss</h3><p>Formal contract signed, confirmed loss received, no decision, or no activity closure documented.</p></div>
         </div>
       </section>
 
