@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CTM Global Sales Toolkit Mockup - Win Loss Debrief Nested</title>
+<title>CTM Global Sales Toolkit - 8 CRM Sales Stages</title>
 <style>
   :root{
     --ctm-navy:#003b49;
@@ -1110,11 +1110,11 @@
         <div class="pipeline-board">
           <div class="stage-card"><h3>1 Active</h3><p>Need and interest established, prospect contact made, and initial intro call scheduled.</p></div>
           <div class="stage-card"><h3>2 Discovery / Qualification</h3><p>Goals shared, pain points identified, next meeting scheduled, and recap confirmed.</p></div>
-          <div class="stage-card"><h3>3 Solution Development</h3><p>Key players accessed, aligned solution developed, buying process understood, and relationship map created.</p></div>
+          <div class="stage-card"><h3>3 Solution Development Engagement</h3><p>Key player access, consultant-led engagement, aligned solution, and buying process understood.</p></div>
           <div class="stage-card"><h3>4 Proposal Submitted</h3><p>RFP/RFI received, go/no-go completed, requirements captured, and proposal submitted.</p></div>
-          <div class="stage-card"><h3>5 Presentation Stage</h3><p>Stakeholder presentation completed or sent, solutions aligned, and follow-up tracked.</p></div>
-          <div class="stage-card"><h3>6 Short Listed / Negotiations</h3><p>Shortlisted, clarifications active, B&F pricing reviewed, OTL or contract draft in progress.</p></div>
-          <div class="stage-card"><h3>7 Verbal Award</h3><p>Business requested, verbal approval granted, written intent to award received, and redlines active.</p></div>
+          <div class="stage-card"><h3>5 Presentation Stage</h3><p>Presentation completed with stakeholders or sent, with solutions aligned and follow-up tracked.</p></div>
+          <div class="stage-card"><h3>6 Short Listed / Negotiations</h3><p>Shortlisted, clarification questions active, B&amp;F pricing reviewed, OTL or contract draft in progress.</p></div>
+          <div class="stage-card"><h3>7 Verbal Award</h3><p>Business requested, verbal approval granted, written intent to award received, and redlining active.</p></div>
           <div class="stage-card"><h3>8 Closed - Won / Loss</h3><p>Formal contract signed, confirmed loss received, no decision, or no activity closure documented.</p></div>
         </div>
       </section>
@@ -1137,10 +1137,10 @@
             <tr><td><span class="stage-pill">3 - Solution Development Engagement</span></td><td>Key player access, consultant-led, aligned solutions, buying process understood.</td><td>20%</td><td>Relationship map, TTV data, sequence of events, internal champion, stakeholder access.</td></tr>
             <tr><td><span class="stage-pill">4 - Proposal Submitted</span></td><td>RFP/RFI received, go/no-go/withdrawn, response or proactive proposal submitted.</td><td>0–30%</td><td>Bid requirements captured, decision timeline confirmed, proposal submitted.</td></tr>
             <tr><td><span class="stage-pill">5 - Presentation Stage</span></td><td>Presentation with stakeholders or presentation sent.</td><td>40%</td><td>Engaging presentation/discussion with solutions aligned.</td></tr>
-            <tr><td><span class="stage-pill">6 - Short Listed / Negotiations</span></td><td>Shortlisted, clarification questions, B&F pricing, OTL, contract draft.</td><td>50–85%</td><td>Next-process email, pricing gaps addressed, Scotwork steps, executive sponsor engagement, contract draft.</td></tr>
+            <tr><td><span class="stage-pill">6 - Short Listed / Negotiations</span></td><td>Shortlisted, clarification questions, B&amp;F pricing, OTL, contract draft.</td><td>50–85%</td><td>Next-process email, pricing gaps addressed, Scotwork steps, executive sponsor engagement, contract draft.</td></tr>
             <tr><td><span class="stage-pill">7 - Verbal Award</span></td><td>Asked for business; verbal approval granted.</td><td>95%</td><td>Written intent to award received; active redlining to agreed terms.</td></tr>
-            <tr><td><span class="stage-pill">8 - Closed Won / Loss</span></td><td>Formal contract signed, confirmed loss, no decision, or no activity.</td><td>0–100%</td><td>Executed agreement, formal loss notification, or closed after 6+ months with no engagement.</td></tr>
-          </tbody>
+            <tr><td><span class="stage-pill">8 - Closed - Won / Loss</span></td><td>Formal contract signed, confirmed loss, no decision, or no activity.</td><td>0–100%</td><td>Executed agreement, formal loss notification, or closed after 6+ months with no engagement.</td></tr>
+</tbody>
         </table>
         <a class="backtop" data-target="home">Back to Home ↑</a>
       </section>
